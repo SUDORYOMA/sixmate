@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@800;900&family=Noto+Sans+JP:wght@500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:#fff}
+    @keyframes sm-spin{to{transform:rotate(360deg)}}
+    @keyframes sm-spinr{to{transform:rotate(-360deg)}}
+    @keyframes sm-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+    @keyframes sm-blink{0%,100%{opacity:1}50%{opacity:.15}}
+    @keyframes sm-scrolldot{0%{transform:translateY(-26px)}100%{transform:translateY(66px)}}
+    [data-theme="dark"]{--ink:#f2f2f2 !important;--paper:#0a0a0a !important;--ghost:#161616 !important;--line:#2b2b2b !important;--mut:#7a7a7a !important}
+  </style>
+</helmet>
+
+<div data-theme="{{ themeAttr }}" data-screen-label="Hero" style="--ink:#0a0a0a;--paper:#ffffff;--ghost:#f1f1f1;--line:#dcdcdc;--mut:#9a9a9a;position:relative;width:100%;height:100vh;min-height:680px;overflow:hidden;background:var(--paper);font-family:'Noto Sans JP',sans-serif">
+
+  <!-- ===== BACKGROUND: ghost text ===== -->
+  <sc-if value="{{ showGhost }}" hint-placeholder-val="{{ true }}">
+    <div aria-hidden="true" style="position:absolute;top:9%;left:-2%;z-index:0;pointer-events:none;font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(140px,24vw,380px);line-height:.8;letter-spacing:-.03em;color:var(--ghost);white-space:nowrap">NEW STANDARD</div>
+  </sc-if>
+
+  <!-- ===== BACKGROUND: wireframe spheres ===== -->
+  <sc-if value="{{ showSpheres }}" hint-placeholder-val="{{ true }}">
+    <div aria-hidden="true" style="position:absolute;inset:0;z-index:0;pointer-events:none">
+      <div style="position:absolute;left:-6%;top:6%;width:30vw;opacity:.55;animation:sm-spin 150s linear infinite">
+        <svg viewBox="0 0 200 200" fill="none" stroke="var(--line)" stroke-width=".7" style="width:100%;display:block"><circle cx="100" cy="100" r="92"/><ellipse cx="100" cy="100" rx="92" ry="30"/><ellipse cx="100" cy="100" rx="92" ry="58"/><ellipse cx="100" cy="100" rx="92" ry="82"/><ellipse cx="100" cy="100" rx="30" ry="92"/><ellipse cx="100" cy="100" rx="58" ry="92"/><ellipse cx="100" cy="100" rx="82" ry="92"/></svg>
+      </div>
+      <div style="position:absolute;right:-9%;top:-4%;width:40vw;opacity:.45;animation:sm-spinr 200s linear infinite">
+        <svg viewBox="0 0 200 200" fill="none" stroke="var(--line)" stroke-width=".7" style="width:100%;display:block"><circle cx="100" cy="100" r="92"/><ellipse cx="100" cy="100" rx="92" ry="30"/><ellipse cx="100" cy="100" rx="92" ry="58"/><ellipse cx="100" cy="100" rx="92" ry="82"/><ellipse cx="100" cy="100" rx="30" ry="92"/><ellipse cx="100" cy="100" rx="58" ry="92"/><ellipse cx="100" cy="100" rx="82" ry="92"/></svg>
+      </div>
+      <div style="position:absolute;left:30%;top:34%;width:32vw;opacity:.32;animation:sm-float 9s ease-in-out infinite">
+        <svg viewBox="0 0 200 200" fill="none" stroke="var(--line)" stroke-width=".7" style="width:100%;display:block"><circle cx="100" cy="100" r="92"/><ellipse cx="100" cy="100" rx="92" ry="30"/><ellipse cx="100" cy="100" rx="92" ry="58"/><ellipse cx="100" cy="100" rx="92" ry="82"/><ellipse cx="100" cy="100" rx="30" ry="92"/><ellipse cx="100" cy="100" rx="58" ry="92"/><ellipse cx="100" cy="100" rx="82" ry="92"/></svg>
+      </div>
+      <div style="position:absolute;right:14%;bottom:-12%;width:26vw;opacity:.4;animation:sm-spin 170s linear infinite">
+        <svg viewBox="0 0 200 200" fill="none" stroke="var(--line)" stroke-width=".7" style="width:100%;display:block"><circle cx="100" cy="100" r="92"/><ellipse cx="100" cy="100" rx="92" ry="30"/><ellipse cx="100" cy="100" rx="92" ry="58"/><ellipse cx="100" cy="100" rx="92" ry="82"/><ellipse cx="100" cy="100" rx="30" ry="92"/><ellipse cx="100" cy="100" rx="58" ry="92"/><ellipse cx="100" cy="100" rx="82" ry="92"/></svg>
+      </div>
+      <div style="position:absolute;left:4%;bottom:-8%;width:22vw;opacity:.3;animation:sm-spinr 190s linear infinite">
+        <svg viewBox="0 0 200 200" fill="none" stroke="var(--line)" stroke-width=".7" style="width:100%;display:block"><circle cx="100" cy="100" r="92"/><ellipse cx="100" cy="100" rx="92" ry="30"/><ellipse cx="100" cy="100" rx="92" ry="58"/><ellipse cx="100" cy="100" rx="92" ry="82"/><ellipse cx="100" cy="100" rx="30" ry="92"/><ellipse cx="100" cy="100" rx="58" ry="92"/><ellipse cx="100" cy="100" rx="82" ry="92"/></svg>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ===== BACKGROUND: hatch + pixel dots ===== -->
+  <div aria-hidden="true" style="position:absolute;top:26px;right:48px;width:300px;height:96px;z-index:1;background:repeating-linear-gradient(135deg,var(--line) 0 1px,transparent 1px 7px)"></div>
+  <div aria-hidden="true" style="position:absolute;inset:0;z-index:1;pointer-events:none">
+    <div style="position:absolute;left:18%;top:20%;width:7px;height:7px;background:var(--line)"></div>
+    <div style="position:absolute;left:46%;top:14%;width:5px;height:5px;background:var(--line)"></div>
+    <div style="position:absolute;left:62%;top:40%;width:6px;height:6px;background:var(--line)"></div>
+    <div style="position:absolute;left:38%;top:62%;width:5px;height:5px;background:var(--line)"></div>
+    <div style="position:absolute;left:72%;top:70%;width:7px;height:7px;background:var(--line)"></div>
+    <div style="position:absolute;left:24%;top:78%;width:6px;height:6px;background:var(--line)"></div>
+    <div style="position:absolute;left:88%;top:48%;width:5px;height:5px;background:var(--line)"></div>
+    <div style="position:absolute;left:8%;top:52%;width:6px;height:6px;background:var(--line)"></div>
+    <div style="position:absolute;left:54%;top:86%;width:5px;height:5px;background:var(--line)"></div>
+  </div>
+
+  <!-- ===== TOP BAR ===== -->
+  <div style="position:absolute;top:0;left:0;right:0;z-index:6;display:flex;justify-content:space-between;align-items:flex-start;padding:34px 48px">
+    <div style="font-family:'Archivo',sans-serif;font-weight:900;font-size:27px;letter-spacing:-.01em;color:var(--ink)">SIXMATE INC.</div>
+
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:16px">
+      <div style="width:34px;height:24px;background:var(--ink);border-radius:7px;display:flex;align-items:center;justify-content:center">
+        <div style="width:0;height:0;border-left:8px solid var(--paper);border-top:5px solid transparent;border-bottom:5px solid transparent;margin-left:2px"></div>
+      </div>
+      <div style="font-family:'Space Mono',monospace;font-size:11px;line-height:1.85;letter-spacing:1px;color:var(--mut);text-align:right">
+        {{ freqLabel }}<br>SIZE 100/100<br>PHASE SHIFT 25
+      </div>
+      <div style="display:flex;flex-direction:column;gap:9px;margin-top:4px">
+        <a href="#" style="text-decoration:none;min-width:158px;text-align:center;background:var(--ink);color:var(--paper);padding:10px 22px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.04em">提供サービス</a>
+        <a href="#" style="text-decoration:none;min-width:158px;text-align:center;background:var(--ink);color:var(--paper);padding:10px 22px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.04em">会社概要</a>
+        <a href="#" style="text-decoration:none;min-width:158px;text-align:center;background:var(--ink);color:var(--paper);padding:10px 22px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.04em">資料請求</a>
+        <a href="#" style="text-decoration:none;min-width:158px;text-align:center;background:var(--ink);color:var(--paper);padding:10px 22px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.04em">お問い合わせ</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== HEADLINE BLOCK ===== -->
+  <div style="position:absolute;left:56px;top:39%;z-index:5;max-width:70%">
+    <span style="display:inline-block;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.08em;background:var(--ink);color:var(--paper);padding:6px 13px">NEW STANDARD_</span>
+    <h1 style="margin:20px 0 0;font-weight:900;font-size:clamp(50px,8.6vw,142px);line-height:1.0;letter-spacing:-.01em;color:var(--ink)">新常識を、<br>創る。</h1>
+    <div style="margin-top:30px;display:flex;flex-direction:column;align-items:flex-start;gap:7px">
+      <span style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.05em;background:var(--ink);color:var(--paper);padding:5px 11px;animation:sm-blink 3.2s steps(1) infinite">SX6.M4T3_</span>
+      <span style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.05em;background:var(--ink);color:var(--paper);padding:5px 11px">IT SERVICE_</span>
+      <span style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.05em;background:var(--ink);color:var(--paper);padding:5px 11px">TOOL DEV_</span>
+    </div>
+    <div style="margin-top:34px;display:flex;align-items:flex-end;gap:18px">
+      <div style="width:46px;height:46px;border:1.5px solid var(--ink);display:flex;align-items:flex-end;justify-content:center;gap:3px;padding:8px">
+        <div style="width:5px;height:11px;background:var(--ink)"></div>
+        <div style="width:5px;height:21px;background:var(--ink)"></div>
+        <div style="width:5px;height:15px;background:var(--ink)"></div>
+      </div>
+      <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.04em;color:var(--mut);padding-bottom:3px">© 2024–2026 株式会社SIXMATE</div>
+    </div>
+  </div>
+
+  <!-- ===== CIRCLE CTA ===== -->
+  <a href="#" style="text-decoration:none;position:absolute;right:6%;bottom:13%;z-index:5;width:232px;height:232px;border-radius:50%;background:var(--ink);color:var(--paper);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;animation:sm-float 6s ease-in-out infinite">
+    <div style="font-weight:800;font-size:21px;line-height:1.5">まずは<br>お気軽に<br>ご相談を&nbsp;↗</div>
+    <div style="margin-top:14px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.18em;opacity:.75">BUILD THE NEW STANDARD</div>
+  </a>
+
+  <!-- ===== SCROLL ===== -->
+  <div style="position:absolute;left:50px;bottom:36px;z-index:5;display:flex;flex-direction:column;align-items:center;gap:12px">
+    <span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.32em;color:var(--mut);writing-mode:vertical-rl">SCROLL</span>
+    <div style="width:1px;height:66px;background:var(--line);position:relative;overflow:hidden">
+      <div style="position:absolute;top:0;left:0;width:1px;height:22px;background:var(--ink);animation:sm-scrolldot 1.9s ease-in-out infinite"></div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: { &quot;width&quot;: 1440, &quot;height&quot;: 900 },
+  &quot;invert&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: false, &quot;tsType&quot;: &quot;boolean&quot; },
+  &quot;showSpheres&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot; },
+  &quot;showGhost&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot; }
+}">
+class Component extends DCLogic {
+  state = { freq: 14 };
+  componentDidMount(){
+    this._iv = setInterval(() => {
+      this.setState({ freq: 8 + Math.floor(Math.random() * 12) });
+    }, 1500);
+  }
+  componentWillUnmount(){ clearInterval(this._iv); }
+  renderVals(){
+    const f = String(this.state.freq).padStart(2, '0');
+    return {
+      freqLabel: 'FREQUENCY ' + f + '/25',
+      themeAttr: (this.props.invert ?? false) ? 'dark' : 'light',
+      showSpheres: this.props.showSpheres ?? true,
+      showGhost: this.props.showGhost ?? true,
+    };
+  }
+}
+</script>
+</body>
+</html>

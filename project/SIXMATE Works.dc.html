@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:#fff}
+    [data-r="burger"]{display:none}
+    @media (max-width:780px){
+      [data-r="pad"]{padding-left:24px !important;padding-right:24px !important}
+      [data-r="grid3"]{grid-template-columns:repeat(2,1fr) !important}
+      [data-r="form2"]{grid-template-columns:1fr !important}
+    }
+    @media (max-width:560px){
+      [data-r="head"]{padding:14px 22px !important}
+      [data-r="burger"]{display:flex !important}
+      [data-r="nav"]{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch !important;gap:0 !important;background:#fff;border-bottom:1px solid var(--line);padding:6px 22px 16px !important;display:none !important;box-shadow:0 16px 30px -16px rgba(0,0,0,.25)}
+      [data-r="head"][data-open="true"] [data-r="nav"]{display:flex !important}
+      [data-r="nav"] a{padding:14px 2px !important;border-bottom:1px solid #f0f0f0;font-size:15px !important}
+      [data-r="nav"] a:last-child{border-bottom:none;text-align:center;margin-top:10px}
+      [data-r="grid3"]{grid-template-columns:1fr !important}
+      [data-r="newsrow"]{flex-wrap:wrap !important;gap:8px 14px !important}
+    }
+  </style>
+  <script src="image-slot.js"></script>
+</helmet>
+
+<div data-screen-label="Works" style="--red:#e3000f;--ink:#161310;--paper:#ffffff;--grey:#6a6a6a;--line:#e3e3e3;position:relative;width:100%;min-height:100vh;background:var(--paper);font-family:'Noto Sans JP',sans-serif">
+
+  <!-- ===== HEADER ===== -->
+  <header data-r="head" data-open="{{ menuOpenStr }}" style="position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:18px 56px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)">
+    <a href="SIXMATE Top.dc.html" style="display:block"><img src="assets/sixmate-logo-h.png" alt="SIXMATE" style="height:30px;width:auto;display:block"></a>
+    <nav data-r="nav" style="display:flex;align-items:center;gap:32px">
+      <a href="SIXMATE Top.dc.html#business" style="text-decoration:none;font-weight:700;font-size:14px;color:var(--ink)" style-hover="color:var(--red)">自社サービス</a>
+      <a href="SIXMATE Top.dc.html#services" style="text-decoration:none;font-weight:700;font-size:14px;color:var(--ink)" style-hover="color:var(--red)">サービス</a>
+      <a href="SIXMATE Works.dc.html" style="text-decoration:none;font-weight:700;font-size:14px;color:var(--red)">制作実績</a>
+      <a href="SIXMATE News.dc.html" style="text-decoration:none;font-weight:700;font-size:14px;color:var(--ink)" style-hover="color:var(--red)">お知らせ</a>
+      <a href="SIXMATE Contact.dc.html" style="text-decoration:none;font-weight:700;font-size:14px;color:#fff;background:var(--red);padding:11px 22px" style-hover="filter:brightness(1.08)">お問い合わせ</a>
+    </nav>
+    <button data-r="burger" onClick="{{ toggleMenu }}" aria-label="メニュー" style="flex-direction:column;justify-content:center;gap:5px;width:42px;height:42px;border:1px solid var(--line);background:#fff;cursor:pointer;align-items:center">
+      <span style="display:block;width:18px;height:2px;background:var(--ink)"></span>
+      <span style="display:block;width:18px;height:2px;background:var(--ink)"></span>
+      <span style="display:block;width:18px;height:2px;background:var(--ink)"></span>
+    </button>
+  </header>
+
+  <!-- ===== PAGE TITLE ===== -->
+  <div data-r="pad" style="position:relative;padding:88px 56px 0;overflow:hidden">
+    <div aria-hidden="true" style="position:absolute;right:-2%;top:-30px;font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(120px,18vw,260px);line-height:.8;color:#f5f5f5;z-index:0;letter-spacing:-.02em">WORKS</div>
+    <div style="position:relative;z-index:1;max-width:1240px;margin:0 auto">
+      <div style="display:flex;align-items:center;gap:12px;font-family:'Archivo',sans-serif;font-weight:700;font-size:12.5px;letter-spacing:.06em;color:#9a9a9a">
+        <a href="SIXMATE Top.dc.html" style="text-decoration:none;color:#9a9a9a" style-hover="color:var(--red)">HOME</a><span>/</span><span style="color:var(--ink)">WORKS</span>
+      </div>
+      <div style="margin-top:18px;font-family:'Archivo',sans-serif;font-weight:800;font-size:13px;letter-spacing:.24em;color:var(--red)">OUR WORKS</div>
+      <h1 style="margin:12px 0 0;font-weight:900;font-size:clamp(40px,5.4vw,72px);color:var(--ink);letter-spacing:.02em">制作実績</h1>
+      <p style="margin:18px 0 0;max-width:38em;font-weight:500;font-size:15px;line-height:1.95;color:var(--grey)">事業として「成果が出るところまで」携わってきた仕事を、業種・領域を問わずご紹介します。</p>
+    </div>
+  </div>
+
+  <!-- ===== FILTER ===== -->
+  <div data-r="pad" style="position:relative;z-index:1;max-width:1240px;margin:48px auto 0;padding:0 56px">
+    <div style="display:flex;flex-wrap:wrap;gap:10px;border-bottom:1px solid var(--line);padding-bottom:22px">
+      <sc-for list="{{ cats }}" as="c" hint-placeholder-count="5">
+        <button onClick="{{ c.onClick }}" style="{{ c.style }}">{{ c.label }}</button>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- ===== GRID ===== -->
+  <div data-r="pad" style="max-width:1240px;margin:46px auto 0;padding:0 56px 110px">
+    <div data-r="grid3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px 24px">
+      <sc-for list="{{ shown }}" as="w" hint-placeholder-count="9">
+        <a href="#" style="text-decoration:none;display:block">
+          <div style="position:relative;overflow:hidden">
+            <image-slot id="{{ w.id }}" shape="rect" placeholder="{{ w.name }}｜実績画像" style="display:block;width:100%;height:230px;background:{{ w.bg }}"></image-slot>
+          </div>
+          <div style="margin-top:14px;display:flex;align-items:center;gap:10px">
+            <span style="font-weight:700;font-size:11px;color:var(--red);background:#fdeced;padding:4px 10px">{{ w.cat }}</span>
+            <span style="font-weight:900;font-size:20px;color:var(--ink)">{{ w.name }}</span>
+          </div>
+          <div style="margin-top:10px;display:flex;align-items:center;gap:14px;font-weight:500;font-size:12.5px;color:#9a9a9a">
+            <span>{{ w.date }}</span>
+            <span style="width:1px;height:11px;background:#d6d6d6"></span>
+            <span>納期 <strong style="color:var(--ink);font-weight:700">{{ w.term }}日</strong></span>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- ===== CONTACT BAND ===== -->
+  <section data-r="pad" style="background:var(--red);padding:88px 56px;text-align:center">
+    <h2 style="margin:0;font-weight:900;font-size:clamp(26px,3.4vw,42px);color:#fff">こんな実績を、あなたの事業にも。</h2>
+    <a href="SIXMATE Contact.dc.html" style="margin-top:30px;text-decoration:none;display:inline-flex;align-items:center;gap:40px;justify-content:space-between;min-width:280px;background:#fff;color:var(--red);font-weight:900;font-size:16px;padding:20px 32px" style-hover="background:#161310;color:#fff">お問い合わせはこちら<span style="font-family:'Archivo'">→</span></a>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer data-r="pad" style="background:#0e0e0c;padding:60px 56px 40px;font-family:'Noto Sans JP',sans-serif">
+    <div style="max-width:1240px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:32px;align-items:center">
+      <a href="SIXMATE Top.dc.html" style="display:block"><img src="assets/sixmate-logo-h.png" alt="SIXMATE" style="height:30px;width:auto;display:block"></a>
+      <nav style="display:flex;gap:28px;flex-wrap:wrap">
+        <a href="SIXMATE Top.dc.html#business" style="text-decoration:none;font-weight:500;font-size:13px;color:#cfcfcf">自社サービス</a>
+        <a href="SIXMATE Works.dc.html" style="text-decoration:none;font-weight:500;font-size:13px;color:#cfcfcf">制作実績</a>
+        <a href="SIXMATE News.dc.html" style="text-decoration:none;font-weight:500;font-size:13px;color:#cfcfcf">お知らせ</a>
+        <a href="SIXMATE Contact.dc.html" style="text-decoration:none;font-weight:500;font-size:13px;color:#cfcfcf">お問い合わせ</a>
+      </nav>
+    </div>
+    <div style="max-width:1240px;margin:36px auto 0;padding-top:22px;border-top:1px solid #26261f;font-family:'Archivo',sans-serif;font-size:12px;color:#6a6a6a">© 2026 SIXMATE Inc. All rights reserved.</div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{ &quot;$preview&quot;: { &quot;width&quot;: 1440, &quot;height&quot;: 1000 } }">
+class Component extends DCLogic {
+  state = { cat: '全て', menuOpen: false };
+  renderVals(){
+    const works = [
+      { id:'w-matsudo',  cat:'Web制作',        name:'松戸総建',   date:'2026.05', term:'30', bg:'#e9edf0' },
+      { id:'w-actif',    cat:'システム開発',   name:'アクティフ', date:'2026.03', term:'60', bg:'#efeae6' },
+      { id:'w-daiei',    cat:'Web制作',        name:'大栄',       date:'2026.01', term:'25', bg:'#e7ebe9' },
+      { id:'w-maruwa',   cat:'レポスル導入',   name:'丸和建設',   date:'2025.11', term:'14', bg:'#1d2126' },
+      { id:'w-sanei',    cat:'コンテンツ制作', name:'三栄商事',   date:'2025.09', term:'20', bg:'#efe9e9' },
+      { id:'w-yamada',   cat:'Web制作',        name:'山田工務店', date:'2025.07', term:'28', bg:'#e8ece8' },
+      { id:'w-kaigo',    cat:'システム開発',   name:'ひだまり介護',date:'2025.05', term:'45', bg:'#ecedf1' },
+      { id:'w-fudosan',  cat:'コンテンツ制作', name:'葉山不動産', date:'2025.03', term:'18', bg:'#f0ece6' },
+      { id:'w-reposul2', cat:'レポスル導入',   name:'北総建設',   date:'2025.01', term:'14', bg:'#1d2126' },
+    ];
+    const cats = ['全て','Web制作','システム開発','コンテンツ制作','レポスル導入'];
+    const active = this.state.cat;
+    const shown = active === '全て' ? works : works.filter(w => w.cat === active);
+    return {
+      menuOpenStr: this.state.menuOpen ? 'true' : 'false',
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      shown,
+      cats: cats.map(label => {
+        const on = label === active;
+        return {
+      menuOpenStr: this.state.menuOpen ? 'true' : 'false',
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+          label,
+          onClick: () => this.setState({ cat: label }),
+          style: `cursor:pointer;font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:13.5px;padding:10px 20px;border:1px solid ${on?'#161310':'#dcdcdc'};background:${on?'#161310':'#fff'};color:${on?'#fff':'#6a6a6a'};transition:all .15s`,
+        };
+      }),
+    };
+  }
+}
+</script>
+</body>
+</html>

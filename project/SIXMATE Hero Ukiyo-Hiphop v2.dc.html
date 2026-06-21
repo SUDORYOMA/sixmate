@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Shippori+Mincho:wght@600;700;800&family=Yuji+Syuku&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:#f1e8d8}
+    @keyframes uh-spin{to{transform:rotate(360deg)}}
+    @keyframes uh-marq{to{transform:translateX(-50%)}}
+    @keyframes uh-float{0%,100%{transform:translateY(0) rotate(-9deg)}50%{transform:translateY(-10px) rotate(-9deg)}}
+    @keyframes uh-wig{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+    [data-accent="ai"]{--acc:#284a6e !important}
+    [data-accent="ochre"]{--acc:#c08a2e !important}
+    [data-accent="beni"]{--acc:#c5462f !important}
+  </style>
+  <script src="image-slot.js"></script>
+</helmet>
+
+<div data-accent="{{ accentAttr }}" data-screen-label="Hero Ukiyo-Hiphop" style="--paper:#f1e8d8;--paper2:#e7dac2;--sumi:#1c1814;--ai:#284a6e;--beni:#c5462f;--ochre:#c08a2e;--acc:#c5462f;position:relative;width:100%;height:100vh;min-height:700px;overflow:hidden;background:var(--paper);font-family:'Shippori Mincho',serif">
+
+  <!-- FUJI -->
+  <div aria-hidden="true" style="position:absolute;left:48%;top:11%;width:660px;height:430px;z-index:0;opacity:.9;clip-path:polygon(50% 0,100% 100%,0 100%);background:var(--ochre)"></div>
+  <div aria-hidden="true" style="position:absolute;left:48%;top:11%;width:660px;height:430px;z-index:0;clip-path:polygon(50% 0,67% 27%,57% 22%,50% 33%,43% 22%,33% 27%);background:var(--paper)"></div>
+
+  <!-- SEA / SEIGAIHA -->
+  <sc-if value="{{ showWave }}" hint-placeholder-val="{{ true }}">
+  <div aria-hidden="true" style="position:absolute;left:0;right:0;bottom:0;height:35%;z-index:0;background:var(--ai);overflow:hidden">
+    <svg width="100%" height="100%" preserveAspectRatio="none" style="display:block;opacity:.85">
+      <defs>
+        <pattern id="seigaiha" x="0" y="0" width="40" height="11" patternUnits="userSpaceOnUse">
+          <g fill="none" stroke="var(--paper)" stroke-width="1.6">
+            <path d="M2,12 A18,18 0 0 1 38,12"/><path d="M7,12 A13,13 0 0 1 33,12"/><path d="M12,12 A8,8 0 0 1 28,12"/><path d="M17,12 A3,3 0 0 1 23,12"/>
+            <path d="M-18,12 A18,18 0 0 1 18,12"/><path d="M-13,12 A13,13 0 0 1 13,12"/><path d="M-8,12 A8,8 0 0 1 8,12"/>
+            <path d="M22,12 A18,18 0 0 1 58,12"/><path d="M27,12 A13,13 0 0 1 53,12"/><path d="M32,12 A8,8 0 0 1 48,12"/>
+          </g>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#seigaiha)"/>
+    </svg>
+  </div>
+  </sc-if>
+
+  <!-- HALFTONE / PAPER GRAIN -->
+  <div aria-hidden="true" style="position:absolute;inset:0;z-index:1;pointer-events:none;mix-blend-mode:multiply;opacity:.5;background-image:radial-gradient(circle,rgba(28,24,20,.16) 0.9px,transparent 1.3px);background-size:5px 5px"></div>
+
+  <!-- RECORD (turntable / seal) -->
+  <sc-if value="{{ showRecord }}" hint-placeholder-val="{{ true }}">
+  <div aria-hidden="true" style="position:absolute;right:-110px;top:46%;transform:translateY(-50%);width:min(48vw,520px);z-index:2;animation:uh-spin 26s linear infinite">
+    <svg viewBox="0 0 400 400" style="width:100%;display:block">
+      <circle cx="200" cy="200" r="198" fill="#161310"/>
+      <g fill="none" stroke="#322a22" stroke-width="1.1">
+        <circle cx="200" cy="200" r="188"/><circle cx="200" cy="200" r="176"/><circle cx="200" cy="200" r="162"/><circle cx="200" cy="200" r="146"/><circle cx="200" cy="200" r="128"/><circle cx="200" cy="200" r="108"/><circle cx="200" cy="200" r="92"/>
+      </g>
+      <circle cx="200" cy="200" r="80" fill="var(--acc)"/>
+      <circle cx="200" cy="200" r="80" fill="none" stroke="var(--paper)" stroke-width="2.5"/>
+      <text x="200" y="178" text-anchor="middle" fill="var(--paper)" font-family="'Dela Gothic One'" font-size="62">六</text>
+      <text x="200" y="234" text-anchor="middle" fill="var(--paper)" font-family="'Space Mono',monospace" font-size="13" letter-spacing="3">SIXMATE</text>
+      <circle cx="200" cy="200" r="6.5" fill="var(--paper)"/>
+    </svg>
+  </div>
+  </sc-if>
+
+  <!-- TOP BAR -->
+  <div style="position:absolute;top:0;left:0;right:0;z-index:6;display:flex;justify-content:space-between;align-items:center;padding:30px 46px">
+    <div style="font-family:'Dela Gothic One';font-size:25px;color:var(--sumi);letter-spacing:-.01em">SIXMATE</div>
+    <div style="display:flex;align-items:center;gap:22px;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.12em;color:var(--sumi)">
+      <a href="#" style="text-decoration:none;color:var(--sumi)">PRODUCT</a>
+      <span style="color:var(--beni)">●</span>
+      <a href="#" style="text-decoration:none;color:var(--sumi)">COMPANY</a>
+      <span style="color:var(--ai)">●</span>
+      <a href="#" style="text-decoration:none;color:var(--sumi)">CONTACT</a>
+      <span style="font-family:'Dela Gothic One';font-size:12px;background:var(--sumi);color:var(--paper);padding:8px 14px;letter-spacing:0">資料請求</span>
+    </div>
+  </div>
+
+  <!-- HEADLINE -->
+  <div style="position:absolute;left:54px;top:25%;z-index:4;max-width:74%">
+    <div style="display:flex;gap:9px;align-items:center;margin-bottom:20px">
+      <span style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.1em;background:var(--sumi);color:var(--paper);padding:6px 12px">浮世 × HIP-HOP</span>
+      <span style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.1em;background:var(--beni);color:var(--paper);padding:6px 12px">MIXTAPE VOL.06</span>
+    </div>
+    <h1 style="margin:0;font-family:'Yuji Syuku',serif;font-weight:400;font-size:clamp(58px,10vw,158px);line-height:.98;letter-spacing:.02em;color:var(--sumi)">新常識を、<br>創る。</h1>
+    <svg aria-hidden="true" viewBox="0 0 400 36" preserveAspectRatio="none" style="height:20px;width:min(46%,360px);margin-top:14px;display:block"><path d="M4 22 C90 6 170 8 250 16 C310 22 360 14 396 9" fill="none" stroke="var(--sumi)" stroke-width="13" stroke-linecap="round" stroke-dasharray="3 7 90 5 150 4 130"/></svg>
+    <div style="margin-top:24px;display:flex;flex-wrap:wrap;gap:11px;align-items:center">
+      <span style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.06em;border:1.5px solid var(--sumi);color:var(--sumi);padding:6px 12px;transform:rotate(-3deg)">EST. 2018 — CHIBA</span>
+      <span style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.06em;background:var(--ai);color:var(--paper);padding:7px 13px;transform:rotate(2deg)">IT × CREATION</span>
+      <span style="font-family:'Shippori Mincho',serif;font-weight:800;font-size:14px;color:var(--sumi);padding:5px 4px">業務の常識を、塗り替える。</span>
+    </div>
+  </div>
+
+  <!-- HANKO SEAL -->
+  <div aria-hidden="true" style="position:absolute;left:43%;top:62%;z-index:5;width:96px;height:96px;background:var(--beni);border:3px solid var(--beni);box-shadow:inset 0 0 0 3px var(--paper);display:flex;align-items:center;justify-content:center;animation:uh-float 6.5s ease-in-out infinite">
+    <span style="font-family:'Yuji Syuku',serif;font-size:54px;color:var(--paper)">新</span>
+  </div>
+
+  <!-- TATEGAKI -->
+  <div style="position:absolute;right:34px;top:120px;z-index:5;writing-mode:vertical-rl;font-family:'Shippori Mincho',serif;font-weight:700;font-size:18px;letter-spacing:.18em;color:var(--sumi)">新しい常識を、世に放つ。</div>
+
+  <!-- CORNER TRIM MARKS -->
+  <div aria-hidden="true" style="position:absolute;top:16px;left:16px;width:16px;height:16px;border-top:1.5px solid var(--sumi);border-left:1.5px solid var(--sumi);z-index:6"></div>
+  <div aria-hidden="true" style="position:absolute;top:16px;right:16px;width:16px;height:16px;border-top:1.5px solid var(--sumi);border-right:1.5px solid var(--sumi);z-index:6"></div>
+  <div aria-hidden="true" style="position:absolute;bottom:64px;left:16px;width:16px;height:16px;border-bottom:1.5px solid var(--sumi);border-left:1.5px solid var(--sumi);z-index:6"></div>
+  <div aria-hidden="true" style="position:absolute;bottom:64px;right:16px;width:16px;height:16px;border-bottom:1.5px solid var(--sumi);border-right:1.5px solid var(--sumi);z-index:6"></div>
+
+  <!-- SHODŌ: giant brush kanji backdrop -->
+  <sc-if value="{{ showShodo }}" hint-placeholder-val="{{ true }}">
+  <div aria-hidden="true" style="position:absolute;right:4%;top:6%;z-index:1;font-family:'Yuji Syuku',serif;font-size:min(64vh,640px);line-height:.78;color:var(--sumi);opacity:.07;pointer-events:none">創</div>
+
+  <!-- SHODŌ: ink splatter -->
+  <div aria-hidden="true" style="position:absolute;left:28%;top:16%;z-index:3;pointer-events:none">
+    <div style="position:absolute;width:15px;height:15px;background:var(--sumi);border-radius:62% 38% 54% 46%;opacity:.85"></div>
+    <div style="position:absolute;left:-13px;top:18px;width:6px;height:6px;background:var(--sumi);border-radius:50%;opacity:.7"></div>
+    <div style="position:absolute;left:21px;top:-9px;width:4px;height:4px;background:var(--sumi);border-radius:50%;opacity:.6"></div>
+    <div style="position:absolute;left:14px;top:25px;width:8px;height:8px;background:var(--sumi);border-radius:46% 54% 60% 40%;opacity:.75"></div>
+  </div>
+
+  <!-- SHODŌ: tategaki brush proverb -->
+  <div style="position:absolute;right:118px;top:150px;z-index:4;writing-mode:vertical-rl;font-family:'Yuji Syuku',serif;font-weight:400;font-size:26px;letter-spacing:.14em;color:var(--paper);line-height:1.5">一筆入魂<br>常識を断つ</div>
+
+  <!-- SHODŌ: hand brush stroke under headline already present; add a kasure sweep -->
+  <svg aria-hidden="true" viewBox="0 0 600 60" preserveAspectRatio="none" style="position:absolute;left:54px;top:55%;width:min(52vw,560px);height:46px;z-index:3;opacity:.9">
+    <path d="M6 40 C120 8 240 6 360 26 C440 40 520 22 594 12" fill="none" stroke="var(--acc)" stroke-width="11" stroke-linecap="round" stroke-dasharray="2 9 60 6 120 5 200"/>
+  </svg>
+
+  <!-- SHODŌ: rakkan stamp (vertical brush name + red seal) -->
+  <div style="position:absolute;left:60px;bottom:118px;z-index:4;display:flex;align-items:flex-end;gap:12px">
+    <div style="writing-mode:vertical-rl;font-family:'Yuji Syuku',serif;font-size:22px;letter-spacing:.1em;color:var(--sumi);line-height:1.3">六真為書</div>
+    <div style="width:62px;height:62px;background:var(--beni);box-shadow:inset 0 0 0 3px var(--paper);display:grid;place-items:center;border-radius:3px">
+      <span style="font-family:'Yuji Syuku',serif;font-size:38px;color:var(--paper)">真</span>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- MARQUEE -->
+  <div style="position:absolute;left:0;right:0;bottom:0;height:48px;background:var(--sumi);overflow:hidden;display:flex;align-items:center;z-index:7">
+    <div style="display:inline-flex;align-items:center;gap:30px;white-space:nowrap;font-family:'Dela Gothic One';font-size:16px;color:var(--paper);padding-left:30px;animation:uh-marq 24s linear infinite">
+      <span>新常識を創る</span><span style="color:var(--beni)">✺</span><span>NEW&nbsp;STANDARD</span><span style="color:var(--ochre)">✺</span><span>EST.2018&nbsp;CHIBA</span><span style="color:var(--beni)">✺</span><span>SIXMATE&nbsp;CREW</span><span style="color:var(--ochre)">✺</span>
+      <span>新常識を創る</span><span style="color:var(--beni)">✺</span><span>NEW&nbsp;STANDARD</span><span style="color:var(--ochre)">✺</span><span>EST.2018&nbsp;CHIBA</span><span style="color:var(--beni)">✺</span><span>SIXMATE&nbsp;CREW</span><span style="color:var(--ochre)">✺</span>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: { &quot;width&quot;: 1440, &quot;height&quot;: 900 },
+  &quot;accent&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;beni&quot;, &quot;ai&quot;, &quot;ochre&quot;], &quot;default&quot;: &quot;beni&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;showWave&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot; },
+  &quot;showRecord&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot; },
+  &quot;showShodo&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot; }
+}">
+class Component extends DCLogic {
+  renderVals(){
+    const allow = ['beni','ai','ochre'];
+    const a = this.props.accent;
+    return {
+      accentAttr: allow.includes(a) ? a : 'beni',
+      showWave: this.props.showWave ?? true,
+      showRecord: this.props.showRecord ?? true,
+      showShodo: this.props.showShodo ?? true,
+    };
+  }
+}
+</script>
+</body>
+</html>
