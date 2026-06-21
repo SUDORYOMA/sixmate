@@ -34,7 +34,7 @@
 html,body{margin:0;padding:0;background:#fff}
 :root{--red:#e3000f;--ink:#161310;--paper:#fff;--grey:#6a6a6a;--line:#e3e3e3}
 body{font-family:'Noto Sans JP',sans-serif}
-input:focus,textarea:focus,select:focus{outline:none;border-color:var(--red)!important}
+input:focus,textarea:focus,select:focus{outline:none;border-color:#e3000f!important}
 input::placeholder,textarea::placeholder{color:#bcbcbc}
 [data-burger]{display:none}
 @media(max-width:780px){
@@ -51,9 +51,9 @@ input::placeholder,textarea::placeholder{color:#bcbcbc}
 }
 </style>
 </head>
-<body>
+<body style="--red:#e3000f;--ink:#161310;--paper:#fff;--grey:#6a6a6a;--line:#e3e3e3;position:relative;width:100%;min-height:100vh;background:var(--paper)">
 
-<!-- HEADER -->
+<!-- ===== HEADER ===== -->
 <header id="sm-head" style="position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:18px 56px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)">
   <a href="index.html" style="display:block"><img src="project/assets/sixmate-logo-h.png" alt="SIXMATE" style="height:30px;width:auto;display:block"></a>
   <nav id="sm-nav" style="display:flex;align-items:center;gap:32px">
@@ -63,14 +63,14 @@ input::placeholder,textarea::placeholder{color:#bcbcbc}
     <a href="news.html" style="text-decoration:none;font-weight:700;font-size:14px;color:var(--ink)">お知らせ</a>
     <a href="contact.html" style="text-decoration:none;font-weight:700;font-size:14px;color:#fff;background:var(--red);padding:11px 22px">お問い合わせ</a>
   </nav>
-  <button data-burger aria-label="メニュー" onclick="document.getElementById('sm-head').classList.toggle('open')" style="display:none;flex-direction:column;justify-content:center;gap:5px;width:42px;height:42px;border:1px solid var(--line);background:#fff;cursor:pointer;align-items:center">
+  <button data-burger aria-label="メニュー" style="flex-direction:column;justify-content:center;gap:5px;width:42px;height:42px;border:1px solid var(--line);background:#fff;cursor:pointer;align-items:center">
     <span style="display:block;width:18px;height:2px;background:var(--ink)"></span>
     <span style="display:block;width:18px;height:2px;background:var(--ink)"></span>
     <span style="display:block;width:18px;height:2px;background:var(--ink)"></span>
   </button>
 </header>
 
-<!-- PAGE TITLE -->
+<!-- ===== PAGE TITLE ===== -->
 <div class="pad" style="position:relative;padding:88px 56px 0;overflow:hidden">
   <div aria-hidden="true" style="position:absolute;right:-2%;top:-30px;font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(110px,16vw,240px);line-height:.8;color:#f5f5f5;z-index:0;letter-spacing:-.02em">CONTACT</div>
   <div style="position:relative;z-index:1;max-width:1080px;margin:0 auto">
@@ -82,7 +82,7 @@ input::placeholder,textarea::placeholder{color:#bcbcbc}
   </div>
 </div>
 
-<!-- CHIPS -->
+<!-- ===== お悩みチップ ===== -->
 <div class="pad" style="max-width:760px;margin:40px auto 0;padding:0 56px">
   <p style="margin:0 0 16px;font-weight:700;font-size:15px;color:var(--ink)">こんなお悩み、ありませんか？</p>
   <div style="display:flex;flex-wrap:wrap;gap:10px">
@@ -94,12 +94,12 @@ input::placeholder,textarea::placeholder{color:#bcbcbc}
   </div>
 </div>
 
-<!-- FORM AREA -->
+<!-- ===== FORM ===== -->
 <div class="pad" style="max-width:760px;margin:54px auto 0;padding:0 56px 110px">
 
   <p style="margin:0 0 36px;font-weight:500;font-size:14px;line-height:2;color:var(--grey)">サービスに関するご相談・お見積もり・取材など、お気軽にお問い合わせください。<br>担当より2営業日以内にご返信します。</p>
 
-  <!-- Success state -->
+  <!-- success state -->
   <div id="success" style="display:none;border:1px solid #ededed;background:#fafafa;padding:64px 40px;text-align:center">
     <div style="width:64px;height:64px;margin:0 auto;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center">
       <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><path d="M5 13l4 4L19 7"></path></svg>
@@ -109,10 +109,7 @@ input::placeholder,textarea::placeholder{color:#bcbcbc}
     <a href="index.html" style="margin-top:28px;text-decoration:none;display:inline-flex;align-items:center;gap:14px;font-weight:700;font-size:14px;color:var(--ink)">トップへ戻る<span style="font-family:'Archivo';color:var(--red)">→</span></a>
   </div>
 
-  <!-- Form -->
-  <!-- Formspree endpoint: https://formspree.io/f/YOUR_FORM_ID
-       1. formspree.io で無料登録 → New Form を作成 → notification email に sudoler.6666@outlook.jp を設定
-       2. 発行された Form ID（例: xpwzrqkd）で下の FORMSPREE_ENDPOINT を置き換えてください -->
+  <!-- form -->
   <form id="contact-form" onsubmit="handleSubmit(event)" style="display:flex;flex-direction:column;gap:24px">
 
     <div class="form2" style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
@@ -139,7 +136,7 @@ input::placeholder,textarea::placeholder{color:#bcbcbc}
 
     <label style="display:flex;flex-direction:column;gap:9px">
       <span style="font-weight:700;font-size:13px;color:var(--ink)">お問い合わせ種別 <span style="color:var(--red);font-weight:700;font-size:11px">必須</span></span>
-      <select name="category" required style="font-family:'Noto Sans JP',sans-serif;font-size:14px;padding:13px 15px;border:1px solid #d6d6d6;background:#fff;color:var(--ink)">
+      <select name="type" required style="font-family:'Noto Sans JP',sans-serif;font-size:14px;padding:13px 15px;border:1px solid #d6d6d6;background:#fff;color:var(--ink)">
         <option value="">選択してください</option>
         <option>Web制作のご相談</option>
         <option>システム・アプリ開発のご相談</option>
@@ -155,15 +152,15 @@ input::placeholder,textarea::placeholder{color:#bcbcbc}
       <textarea name="message" required rows="6" placeholder="ご相談内容をご記入ください" style="font-family:'Noto Sans JP',sans-serif;font-size:14px;padding:13px 15px;border:1px solid #d6d6d6;background:#fff;resize:vertical;line-height:1.7"></textarea>
     </label>
 
-    <div id="form-error" style="display:none;text-align:center;color:#c00;font-weight:700;font-size:14px;padding:12px;background:#fff0f0;border:1px solid #fcc">送信に失敗しました。時間をおいて再度お試しください。</div>
+    <div id="form-error" style="display:none;color:var(--red);font-weight:700;font-size:13px;text-align:center">送信に失敗しました。しばらく経ってから再度お試しください。</div>
 
-    <button type="submit" id="submit-btn" style="margin-top:10px;align-self:center;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:40px;justify-content:space-between;min-width:280px;background:var(--red);color:#fff;font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:16px;padding:18px 32px;transition:filter .15s" onmouseover="this.style.filter='brightness(1.08)'" onmouseout="this.style.filter='none'">送信する<span style="font-family:'Archivo'">→</span></button>
+    <button type="submit" id="submit-btn" style="margin-top:10px;align-self:center;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:40px;justify-content:space-between;min-width:280px;background:var(--red);color:#fff;font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:16px;padding:18px 32px">送信する<span style="font-family:'Archivo'">→</span></button>
   </form>
 
 </div>
 
-<!-- FOOTER -->
-<footer class="pad" style="background:#0e0e0c;padding:60px 56px 40px">
+<!-- ===== FOOTER ===== -->
+<footer class="pad" style="background:#0e0e0c;padding:60px 56px 40px;font-family:'Noto Sans JP',sans-serif">
   <div style="max-width:1240px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:32px;align-items:center">
     <a href="index.html" style="display:block"><img src="project/assets/sixmate-logo-h.png" alt="SIXMATE" style="height:30px;width:auto;display:block"></a>
     <nav style="display:flex;gap:28px;flex-wrap:wrap">
@@ -186,7 +183,6 @@ async function handleSubmit(e) {
   errDiv.style.display = 'none';
   btn.disabled = true;
   btn.textContent = '送信中…';
-
   try {
     const res = await fetch(FORMSPREE_ENDPOINT, {
       method: 'POST',
@@ -197,15 +193,17 @@ async function handleSubmit(e) {
       document.getElementById('contact-form').style.display = 'none';
       document.getElementById('success').style.display = 'block';
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      throw new Error('server error');
-    }
+    } else { throw new Error('server error'); }
   } catch {
     errDiv.style.display = 'block';
     btn.disabled = false;
     btn.innerHTML = '送信する<span style="font-family:\'Archivo\'">→</span>';
   }
 }
+
+document.querySelector('button[data-burger]').addEventListener('click', function() {
+  document.getElementById('sm-head').classList.toggle('open');
+});
 </script>
 </body>
 </html>

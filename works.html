@@ -34,11 +34,10 @@
 html,body{margin:0;padding:0;background:#fff}
 :root{--red:#e3000f;--ink:#161310;--paper:#fff;--grey:#6a6a6a;--line:#e3e3e3}
 body{font-family:'Noto Sans JP',sans-serif}
-.img-slot{display:flex;align-items:center;justify-content:center;font-family:'Archivo',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;color:#b0b0b0}
 [data-burger]{display:none}
 @media(max-width:780px){
   .pad{padding-left:24px!important;padding-right:24px!important}
-  .grid3{grid-template-columns:repeat(2,1fr)!important}
+  #works-grid{grid-template-columns:repeat(2,1fr)!important}
 }
 @media(max-width:560px){
   #sm-head{padding:14px 22px!important}
@@ -47,14 +46,16 @@ body{font-family:'Noto Sans JP',sans-serif}
   #sm-head.open #sm-nav{display:flex!important}
   #sm-nav a{padding:14px 2px!important;border-bottom:1px solid #f0f0f0;font-size:15px!important}
   #sm-nav a:last-child{border-bottom:none;text-align:center;margin-top:10px}
-  .grid3{grid-template-columns:1fr!important}
+  #works-grid{grid-template-columns:1fr!important}
 }
-.work-card a:hover .work-thumb{opacity:.88}
+.work-card:hover .work-img-wrap{transform:scale(1.03)}
+.work-img-wrap{transition:transform .4s ease;overflow:hidden}
+a{color:inherit}
 </style>
 </head>
-<body>
+<body style="--red:#e3000f;--ink:#161310;--paper:#fff;--grey:#6a6a6a;--line:#e3e3e3;position:relative;width:100%;min-height:100vh;background:var(--paper)">
 
-<!-- HEADER -->
+<!-- ===== HEADER ===== -->
 <header id="sm-head" style="position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:18px 56px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)">
   <a href="index.html" style="display:block"><img src="project/assets/sixmate-logo-h.png" alt="SIXMATE" style="height:30px;width:auto;display:block"></a>
   <nav id="sm-nav" style="display:flex;align-items:center;gap:32px">
@@ -64,14 +65,14 @@ body{font-family:'Noto Sans JP',sans-serif}
     <a href="news.html" style="text-decoration:none;font-weight:700;font-size:14px;color:var(--ink)">お知らせ</a>
     <a href="contact.html" style="text-decoration:none;font-weight:700;font-size:14px;color:#fff;background:var(--red);padding:11px 22px">お問い合わせ</a>
   </nav>
-  <button data-burger aria-label="メニュー" onclick="document.getElementById('sm-head').classList.toggle('open')" style="display:none;flex-direction:column;justify-content:center;gap:5px;width:42px;height:42px;border:1px solid var(--line);background:#fff;cursor:pointer;align-items:center">
+  <button data-burger onclick="this.closest('#sm-head').classList.toggle('open')" aria-label="メニュー" style="flex-direction:column;justify-content:center;gap:5px;width:42px;height:42px;border:1px solid var(--line);background:#fff;cursor:pointer;align-items:center">
     <span style="display:block;width:18px;height:2px;background:var(--ink)"></span>
     <span style="display:block;width:18px;height:2px;background:var(--ink)"></span>
     <span style="display:block;width:18px;height:2px;background:var(--ink)"></span>
   </button>
 </header>
 
-<!-- PAGE TITLE -->
+<!-- ===== PAGE TITLE ===== -->
 <div class="pad" style="position:relative;padding:88px 56px 0;overflow:hidden">
   <div aria-hidden="true" style="position:absolute;right:-2%;top:-30px;font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(120px,18vw,260px);line-height:.8;color:#f5f5f5;z-index:0;letter-spacing:-.02em">WORKS</div>
   <div style="position:relative;z-index:1;max-width:1240px;margin:0 auto">
@@ -84,149 +85,168 @@ body{font-family:'Noto Sans JP',sans-serif}
   </div>
 </div>
 
-<!-- FILTER -->
+<!-- ===== FILTER ===== -->
 <div class="pad" style="position:relative;z-index:1;max-width:1240px;margin:48px auto 0;padding:0 56px">
-  <div style="display:flex;flex-wrap:wrap;gap:10px;border-bottom:1px solid var(--line);padding-bottom:22px" id="filters">
-    <button onclick="filter('全て',this)" style="cursor:pointer;font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:13.5px;padding:10px 20px;border:1px solid #161310;background:#161310;color:#fff;transition:all .15s">全て</button>
-    <button onclick="filter('Web制作',this)" style="cursor:pointer;font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:13.5px;padding:10px 20px;border:1px solid #dcdcdc;background:#fff;color:#6a6a6a;transition:all .15s">Web制作</button>
-    <button onclick="filter('システム開発',this)" style="cursor:pointer;font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:13.5px;padding:10px 20px;border:1px solid #dcdcdc;background:#fff;color:#6a6a6a;transition:all .15s">システム開発</button>
-    <button onclick="filter('コンテンツ制作',this)" style="cursor:pointer;font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:13.5px;padding:10px 20px;border:1px solid #dcdcdc;background:#fff;color:#6a6a6a;transition:all .15s">コンテンツ制作</button>
-    <button onclick="filter('レポスル導入',this)" style="cursor:pointer;font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:13.5px;padding:10px 20px;border:1px solid #dcdcdc;background:#fff;color:#6a6a6a;transition:all .15s">レポスル導入</button>
+  <div id="filter-wrap" style="display:flex;flex-wrap:wrap;gap:10px;border-bottom:1px solid var(--line);padding-bottom:22px">
+    <button class="filter-btn active" data-cat="全て" onclick="filterWorks(this)" style="cursor:pointer;font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:13.5px;padding:10px 20px;border:1px solid #161310;background:#161310;color:#fff;transition:all .15s">全て</button>
+    <button class="filter-btn" data-cat="Web制作" onclick="filterWorks(this)" style="cursor:pointer;font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:13.5px;padding:10px 20px;border:1px solid #dcdcdc;background:#fff;color:#6a6a6a;transition:all .15s">Web制作</button>
+    <button class="filter-btn" data-cat="システム開発" onclick="filterWorks(this)" style="cursor:pointer;font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:13.5px;padding:10px 20px;border:1px solid #dcdcdc;background:#fff;color:#6a6a6a;transition:all .15s">システム開発</button>
+    <button class="filter-btn" data-cat="コンテンツ制作" onclick="filterWorks(this)" style="cursor:pointer;font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:13.5px;padding:10px 20px;border:1px solid #dcdcdc;background:#fff;color:#6a6a6a;transition:all .15s">コンテンツ制作</button>
+    <button class="filter-btn" data-cat="レポスル導入" onclick="filterWorks(this)" style="cursor:pointer;font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:13.5px;padding:10px 20px;border:1px solid #dcdcdc;background:#fff;color:#6a6a6a;transition:all .15s">レポスル導入</button>
   </div>
 </div>
 
-<!-- GRID -->
+<!-- ===== GRID ===== -->
 <div class="pad" style="max-width:1240px;margin:46px auto 0;padding:0 56px 110px">
-  <div class="grid3" id="works-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px 24px">
+  <div id="works-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px 24px">
 
-    <div class="work-card" data-cat="Web制作">
-      <a href="#" style="text-decoration:none;display:block">
-        <div class="work-thumb img-slot" style="width:100%;height:230px;background:#e9edf0;transition:opacity .15s"><span>松戸総建｜実績画像</span></div>
-        <div style="margin-top:14px;display:flex;align-items:center;gap:10px">
-          <span style="font-weight:700;font-size:11px;color:var(--red);background:#fdeced;padding:4px 10px">Web制作</span>
-          <span style="font-weight:900;font-size:20px;color:var(--ink)">松戸総建</span>
-        </div>
-        <div style="margin-top:10px;display:flex;align-items:center;gap:14px;font-weight:500;font-size:12.5px;color:#9a9a9a">
-          <span>2026.05</span><span style="width:1px;height:11px;background:#d6d6d6;display:inline-block"></span><span>納期 <strong style="color:var(--ink);font-weight:700">30日</strong></span>
-        </div>
-      </a>
-    </div>
+    <a href="#" class="work-card" data-cat="Web制作" style="text-decoration:none;display:block">
+      <div class="work-img-wrap" style="width:100%;height:230px;background:#e9edf0;display:flex;align-items:center;justify-content:center">
+        <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:22px;color:#b0b8be">松戸総建</span>
+      </div>
+      <div style="margin-top:14px;display:flex;align-items:center;gap:10px">
+        <span style="font-weight:700;font-size:11px;color:var(--red);background:#fdeced;padding:4px 10px">Web制作</span>
+        <span style="font-weight:900;font-size:20px;color:var(--ink)">松戸総建</span>
+      </div>
+      <div style="margin-top:10px;display:flex;align-items:center;gap:14px;font-weight:500;font-size:12.5px;color:#9a9a9a">
+        <span>2026.05</span>
+        <span style="width:1px;height:11px;background:#d6d6d6"></span>
+        <span>納期 <strong style="color:var(--ink);font-weight:700">30日</strong></span>
+      </div>
+    </a>
 
-    <div class="work-card" data-cat="システム開発">
-      <a href="#" style="text-decoration:none;display:block">
-        <div class="work-thumb img-slot" style="width:100%;height:230px;background:#efeae6;transition:opacity .15s"><span>アクティフ｜実績画像</span></div>
-        <div style="margin-top:14px;display:flex;align-items:center;gap:10px">
-          <span style="font-weight:700;font-size:11px;color:var(--red);background:#fdeced;padding:4px 10px">システム開発</span>
-          <span style="font-weight:900;font-size:20px;color:var(--ink)">アクティフ</span>
-        </div>
-        <div style="margin-top:10px;display:flex;align-items:center;gap:14px;font-weight:500;font-size:12.5px;color:#9a9a9a">
-          <span>2026.03</span><span style="width:1px;height:11px;background:#d6d6d6;display:inline-block"></span><span>納期 <strong style="color:var(--ink);font-weight:700">60日</strong></span>
-        </div>
-      </a>
-    </div>
+    <a href="#" class="work-card" data-cat="システム開発" style="text-decoration:none;display:block">
+      <div class="work-img-wrap" style="width:100%;height:230px;background:#efeae6;display:flex;align-items:center;justify-content:center">
+        <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:22px;color:#b8b0ab">アクティフ</span>
+      </div>
+      <div style="margin-top:14px;display:flex;align-items:center;gap:10px">
+        <span style="font-weight:700;font-size:11px;color:var(--red);background:#fdeced;padding:4px 10px">システム開発</span>
+        <span style="font-weight:900;font-size:20px;color:var(--ink)">アクティフ</span>
+      </div>
+      <div style="margin-top:10px;display:flex;align-items:center;gap:14px;font-weight:500;font-size:12.5px;color:#9a9a9a">
+        <span>2026.03</span>
+        <span style="width:1px;height:11px;background:#d6d6d6"></span>
+        <span>納期 <strong style="color:var(--ink);font-weight:700">60日</strong></span>
+      </div>
+    </a>
 
-    <div class="work-card" data-cat="Web制作">
-      <a href="#" style="text-decoration:none;display:block">
-        <div class="work-thumb img-slot" style="width:100%;height:230px;background:#e7ebe9;transition:opacity .15s"><span>大栄｜実績画像</span></div>
-        <div style="margin-top:14px;display:flex;align-items:center;gap:10px">
-          <span style="font-weight:700;font-size:11px;color:var(--red);background:#fdeced;padding:4px 10px">Web制作</span>
-          <span style="font-weight:900;font-size:20px;color:var(--ink)">大栄</span>
-        </div>
-        <div style="margin-top:10px;display:flex;align-items:center;gap:14px;font-weight:500;font-size:12.5px;color:#9a9a9a">
-          <span>2026.01</span><span style="width:1px;height:11px;background:#d6d6d6;display:inline-block"></span><span>納期 <strong style="color:var(--ink);font-weight:700">25日</strong></span>
-        </div>
-      </a>
-    </div>
+    <a href="#" class="work-card" data-cat="Web制作" style="text-decoration:none;display:block">
+      <div class="work-img-wrap" style="width:100%;height:230px;background:#e7ebe9;display:flex;align-items:center;justify-content:center">
+        <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:22px;color:#adb5b1">大栄</span>
+      </div>
+      <div style="margin-top:14px;display:flex;align-items:center;gap:10px">
+        <span style="font-weight:700;font-size:11px;color:var(--red);background:#fdeced;padding:4px 10px">Web制作</span>
+        <span style="font-weight:900;font-size:20px;color:var(--ink)">大栄</span>
+      </div>
+      <div style="margin-top:10px;display:flex;align-items:center;gap:14px;font-weight:500;font-size:12.5px;color:#9a9a9a">
+        <span>2026.01</span>
+        <span style="width:1px;height:11px;background:#d6d6d6"></span>
+        <span>納期 <strong style="color:var(--ink);font-weight:700">25日</strong></span>
+      </div>
+    </a>
 
-    <div class="work-card" data-cat="レポスル導入">
-      <a href="#" style="text-decoration:none;display:block">
-        <div class="work-thumb img-slot" style="width:100%;height:230px;background:#1d2126;transition:opacity .15s"><span>丸和建設｜実績画像</span></div>
-        <div style="margin-top:14px;display:flex;align-items:center;gap:10px">
-          <span style="font-weight:700;font-size:11px;color:var(--red);background:#fdeced;padding:4px 10px">レポスル導入</span>
-          <span style="font-weight:900;font-size:20px;color:var(--ink)">丸和建設</span>
-        </div>
-        <div style="margin-top:10px;display:flex;align-items:center;gap:14px;font-weight:500;font-size:12.5px;color:#9a9a9a">
-          <span>2025.11</span><span style="width:1px;height:11px;background:#d6d6d6;display:inline-block"></span><span>納期 <strong style="color:var(--ink);font-weight:700">14日</strong></span>
-        </div>
-      </a>
-    </div>
+    <a href="#" class="work-card" data-cat="レポスル導入" style="text-decoration:none;display:block">
+      <div class="work-img-wrap" style="width:100%;height:230px;background:#1d2126;display:flex;align-items:center;justify-content:center">
+        <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:22px;color:#4a5260">丸和建設</span>
+      </div>
+      <div style="margin-top:14px;display:flex;align-items:center;gap:10px">
+        <span style="font-weight:700;font-size:11px;color:var(--red);background:#fdeced;padding:4px 10px">レポスル導入</span>
+        <span style="font-weight:900;font-size:20px;color:var(--ink)">丸和建設</span>
+      </div>
+      <div style="margin-top:10px;display:flex;align-items:center;gap:14px;font-weight:500;font-size:12.5px;color:#9a9a9a">
+        <span>2025.11</span>
+        <span style="width:1px;height:11px;background:#d6d6d6"></span>
+        <span>納期 <strong style="color:var(--ink);font-weight:700">14日</strong></span>
+      </div>
+    </a>
 
-    <div class="work-card" data-cat="コンテンツ制作">
-      <a href="#" style="text-decoration:none;display:block">
-        <div class="work-thumb img-slot" style="width:100%;height:230px;background:#efe9e9;transition:opacity .15s"><span>三栄商事｜実績画像</span></div>
-        <div style="margin-top:14px;display:flex;align-items:center;gap:10px">
-          <span style="font-weight:700;font-size:11px;color:var(--red);background:#fdeced;padding:4px 10px">コンテンツ制作</span>
-          <span style="font-weight:900;font-size:20px;color:var(--ink)">三栄商事</span>
-        </div>
-        <div style="margin-top:10px;display:flex;align-items:center;gap:14px;font-weight:500;font-size:12.5px;color:#9a9a9a">
-          <span>2025.09</span><span style="width:1px;height:11px;background:#d6d6d6;display:inline-block"></span><span>納期 <strong style="color:var(--ink);font-weight:700">20日</strong></span>
-        </div>
-      </a>
-    </div>
+    <a href="#" class="work-card" data-cat="コンテンツ制作" style="text-decoration:none;display:block">
+      <div class="work-img-wrap" style="width:100%;height:230px;background:#efe9e9;display:flex;align-items:center;justify-content:center">
+        <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:22px;color:#b8b0b0">三栄商事</span>
+      </div>
+      <div style="margin-top:14px;display:flex;align-items:center;gap:10px">
+        <span style="font-weight:700;font-size:11px;color:var(--red);background:#fdeced;padding:4px 10px">コンテンツ制作</span>
+        <span style="font-weight:900;font-size:20px;color:var(--ink)">三栄商事</span>
+      </div>
+      <div style="margin-top:10px;display:flex;align-items:center;gap:14px;font-weight:500;font-size:12.5px;color:#9a9a9a">
+        <span>2025.09</span>
+        <span style="width:1px;height:11px;background:#d6d6d6"></span>
+        <span>納期 <strong style="color:var(--ink);font-weight:700">20日</strong></span>
+      </div>
+    </a>
 
-    <div class="work-card" data-cat="Web制作">
-      <a href="#" style="text-decoration:none;display:block">
-        <div class="work-thumb img-slot" style="width:100%;height:230px;background:#e8ece8;transition:opacity .15s"><span>山田工務店｜実績画像</span></div>
-        <div style="margin-top:14px;display:flex;align-items:center;gap:10px">
-          <span style="font-weight:700;font-size:11px;color:var(--red);background:#fdeced;padding:4px 10px">Web制作</span>
-          <span style="font-weight:900;font-size:20px;color:var(--ink)">山田工務店</span>
-        </div>
-        <div style="margin-top:10px;display:flex;align-items:center;gap:14px;font-weight:500;font-size:12.5px;color:#9a9a9a">
-          <span>2025.07</span><span style="width:1px;height:11px;background:#d6d6d6;display:inline-block"></span><span>納期 <strong style="color:var(--ink);font-weight:700">28日</strong></span>
-        </div>
-      </a>
-    </div>
+    <a href="#" class="work-card" data-cat="Web制作" style="text-decoration:none;display:block">
+      <div class="work-img-wrap" style="width:100%;height:230px;background:#e8ece8;display:flex;align-items:center;justify-content:center">
+        <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:22px;color:#aeb6ae">山田工務店</span>
+      </div>
+      <div style="margin-top:14px;display:flex;align-items:center;gap:10px">
+        <span style="font-weight:700;font-size:11px;color:var(--red);background:#fdeced;padding:4px 10px">Web制作</span>
+        <span style="font-weight:900;font-size:20px;color:var(--ink)">山田工務店</span>
+      </div>
+      <div style="margin-top:10px;display:flex;align-items:center;gap:14px;font-weight:500;font-size:12.5px;color:#9a9a9a">
+        <span>2025.07</span>
+        <span style="width:1px;height:11px;background:#d6d6d6"></span>
+        <span>納期 <strong style="color:var(--ink);font-weight:700">28日</strong></span>
+      </div>
+    </a>
 
-    <div class="work-card" data-cat="システム開発">
-      <a href="#" style="text-decoration:none;display:block">
-        <div class="work-thumb img-slot" style="width:100%;height:230px;background:#ecedf1;transition:opacity .15s"><span>ひだまり介護｜実績画像</span></div>
-        <div style="margin-top:14px;display:flex;align-items:center;gap:10px">
-          <span style="font-weight:700;font-size:11px;color:var(--red);background:#fdeced;padding:4px 10px">システム開発</span>
-          <span style="font-weight:900;font-size:20px;color:var(--ink)">ひだまり介護</span>
-        </div>
-        <div style="margin-top:10px;display:flex;align-items:center;gap:14px;font-weight:500;font-size:12.5px;color:#9a9a9a">
-          <span>2025.05</span><span style="width:1px;height:11px;background:#d6d6d6;display:inline-block"></span><span>納期 <strong style="color:var(--ink);font-weight:700">45日</strong></span>
-        </div>
-      </a>
-    </div>
+    <a href="#" class="work-card" data-cat="システム開発" style="text-decoration:none;display:block">
+      <div class="work-img-wrap" style="width:100%;height:230px;background:#ecedf1;display:flex;align-items:center;justify-content:center">
+        <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:22px;color:#b0b1b8">ひだまり介護</span>
+      </div>
+      <div style="margin-top:14px;display:flex;align-items:center;gap:10px">
+        <span style="font-weight:700;font-size:11px;color:var(--red);background:#fdeced;padding:4px 10px">システム開発</span>
+        <span style="font-weight:900;font-size:20px;color:var(--ink)">ひだまり介護</span>
+      </div>
+      <div style="margin-top:10px;display:flex;align-items:center;gap:14px;font-weight:500;font-size:12.5px;color:#9a9a9a">
+        <span>2025.05</span>
+        <span style="width:1px;height:11px;background:#d6d6d6"></span>
+        <span>納期 <strong style="color:var(--ink);font-weight:700">45日</strong></span>
+      </div>
+    </a>
 
-    <div class="work-card" data-cat="コンテンツ制作">
-      <a href="#" style="text-decoration:none;display:block">
-        <div class="work-thumb img-slot" style="width:100%;height:230px;background:#f0ece6;transition:opacity .15s"><span>葉山不動産｜実績画像</span></div>
-        <div style="margin-top:14px;display:flex;align-items:center;gap:10px">
-          <span style="font-weight:700;font-size:11px;color:var(--red);background:#fdeced;padding:4px 10px">コンテンツ制作</span>
-          <span style="font-weight:900;font-size:20px;color:var(--ink)">葉山不動産</span>
-        </div>
-        <div style="margin-top:10px;display:flex;align-items:center;gap:14px;font-weight:500;font-size:12.5px;color:#9a9a9a">
-          <span>2025.03</span><span style="width:1px;height:11px;background:#d6d6d6;display:inline-block"></span><span>納期 <strong style="color:var(--ink);font-weight:700">18日</strong></span>
-        </div>
-      </a>
-    </div>
+    <a href="#" class="work-card" data-cat="コンテンツ制作" style="text-decoration:none;display:block">
+      <div class="work-img-wrap" style="width:100%;height:230px;background:#f0ece6;display:flex;align-items:center;justify-content:center">
+        <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:22px;color:#b8b4ae">葉山不動産</span>
+      </div>
+      <div style="margin-top:14px;display:flex;align-items:center;gap:10px">
+        <span style="font-weight:700;font-size:11px;color:var(--red);background:#fdeced;padding:4px 10px">コンテンツ制作</span>
+        <span style="font-weight:900;font-size:20px;color:var(--ink)">葉山不動産</span>
+      </div>
+      <div style="margin-top:10px;display:flex;align-items:center;gap:14px;font-weight:500;font-size:12.5px;color:#9a9a9a">
+        <span>2025.03</span>
+        <span style="width:1px;height:11px;background:#d6d6d6"></span>
+        <span>納期 <strong style="color:var(--ink);font-weight:700">18日</strong></span>
+      </div>
+    </a>
 
-    <div class="work-card" data-cat="レポスル導入">
-      <a href="#" style="text-decoration:none;display:block">
-        <div class="work-thumb img-slot" style="width:100%;height:230px;background:#1d2126;transition:opacity .15s"><span>北総建設｜実績画像</span></div>
-        <div style="margin-top:14px;display:flex;align-items:center;gap:10px">
-          <span style="font-weight:700;font-size:11px;color:var(--red);background:#fdeced;padding:4px 10px">レポスル導入</span>
-          <span style="font-weight:900;font-size:20px;color:var(--ink)">北総建設</span>
-        </div>
-        <div style="margin-top:10px;display:flex;align-items:center;gap:14px;font-weight:500;font-size:12.5px;color:#9a9a9a">
-          <span>2025.01</span><span style="width:1px;height:11px;background:#d6d6d6;display:inline-block"></span><span>納期 <strong style="color:var(--ink);font-weight:700">14日</strong></span>
-        </div>
-      </a>
-    </div>
+    <a href="#" class="work-card" data-cat="レポスル導入" style="text-decoration:none;display:block">
+      <div class="work-img-wrap" style="width:100%;height:230px;background:#1d2126;display:flex;align-items:center;justify-content:center">
+        <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:22px;color:#4a5260">北総建設</span>
+      </div>
+      <div style="margin-top:14px;display:flex;align-items:center;gap:10px">
+        <span style="font-weight:700;font-size:11px;color:var(--red);background:#fdeced;padding:4px 10px">レポスル導入</span>
+        <span style="font-weight:900;font-size:20px;color:var(--ink)">北総建設</span>
+      </div>
+      <div style="margin-top:10px;display:flex;align-items:center;gap:14px;font-weight:500;font-size:12.5px;color:#9a9a9a">
+        <span>2025.01</span>
+        <span style="width:1px;height:11px;background:#d6d6d6"></span>
+        <span>納期 <strong style="color:var(--ink);font-weight:700">14日</strong></span>
+      </div>
+    </a>
 
   </div>
+  <div id="no-results" style="display:none;padding:60px 0;text-align:center;color:var(--grey);font-weight:500;font-size:15px">該当する実績はありません。</div>
 </div>
 
-<!-- CONTACT BAND -->
+<!-- ===== CONTACT BAND ===== -->
 <section class="pad" style="background:var(--red);padding:88px 56px;text-align:center">
   <h2 style="margin:0;font-weight:900;font-size:clamp(26px,3.4vw,42px);color:#fff">こんな実績を、あなたの事業にも。</h2>
-  <a href="contact.html" style="margin-top:30px;text-decoration:none;display:inline-flex;align-items:center;gap:40px;justify-content:space-between;min-width:280px;background:#fff;color:var(--red);font-weight:900;font-size:16px;padding:20px 32px;transition:background .15s,color .15s" onmouseover="this.style.background='#161310';this.style.color='#fff'" onmouseout="this.style.background='#fff';this.style.color='#e3000f'">お問い合わせはこちら<span style="font-family:'Archivo'">→</span></a>
+  <a href="contact.html" style="margin-top:30px;text-decoration:none;display:inline-flex;align-items:center;gap:40px;justify-content:space-between;min-width:280px;background:#fff;color:var(--red);font-weight:900;font-size:16px;padding:20px 32px">お問い合わせはこちら<span style="font-family:'Archivo'">→</span></a>
 </section>
 
-<!-- FOOTER -->
-<footer class="pad" style="background:#0e0e0c;padding:60px 56px 40px">
+<!-- ===== FOOTER ===== -->
+<footer class="pad" style="background:#0e0e0c;padding:60px 56px 40px;font-family:'Noto Sans JP',sans-serif">
   <div style="max-width:1240px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:32px;align-items:center">
     <a href="index.html" style="display:block"><img src="project/assets/sixmate-logo-h.png" alt="SIXMATE" style="height:30px;width:auto;display:block"></a>
     <nav style="display:flex;gap:28px;flex-wrap:wrap">
@@ -240,19 +260,26 @@ body{font-family:'Noto Sans JP',sans-serif}
 </footer>
 
 <script>
-function filter(cat, btn) {
-  document.querySelectorAll('#filters button').forEach(b => {
-    b.style.background = '#fff';
-    b.style.color = '#6a6a6a';
-    b.style.borderColor = '#dcdcdc';
+function filterWorks(btn) {
+  const cat = btn.dataset.cat;
+  document.querySelectorAll('.filter-btn').forEach(b => {
+    const on = b === btn;
+    b.style.border = '1px solid ' + (on ? '#161310' : '#dcdcdc');
+    b.style.background = on ? '#161310' : '#fff';
+    b.style.color = on ? '#fff' : '#6a6a6a';
   });
-  btn.style.background = '#161310';
-  btn.style.color = '#fff';
-  btn.style.borderColor = '#161310';
-  document.querySelectorAll('.work-card').forEach(card => {
-    card.style.display = (cat === '全て' || card.dataset.cat === cat) ? 'block' : 'none';
+  const cards = document.querySelectorAll('.work-card');
+  let visible = 0;
+  cards.forEach(card => {
+    const show = cat === '全て' || card.dataset.cat === cat;
+    card.style.display = show ? 'block' : 'none';
+    if (show) visible++;
   });
+  document.getElementById('no-results').style.display = visible === 0 ? 'block' : 'none';
 }
+document.querySelector('#sm-head button[data-burger]').addEventListener('click', function() {
+  document.getElementById('sm-head').classList.toggle('open');
+});
 </script>
 </body>
 </html>
