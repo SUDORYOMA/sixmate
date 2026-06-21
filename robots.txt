@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sudoler6666.github.io/sixmate/sitemap.xml
