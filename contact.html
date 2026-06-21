@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>お問い合わせ | SIXMATE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#fff}
+:root{--red:#e3000f;--ink:#161310;--paper:#fff;--grey:#6a6a6a;--line:#e3e3e3}
+body{font-family:'Noto Sans JP',sans-serif}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--red)!important}
+input::placeholder,textarea::placeholder{color:#bcbcbc}
+[data-burger]{display:none}
+@media(max-width:780px){
+  .pad{padding-left:24px!important;padding-right:24px!important}
+  .form2{grid-template-columns:1fr!important}
+}
+@media(max-width:560px){
+  #sm-head{padding:14px 22px!important}
+  [data-burger]{display:flex!important}
+  #sm-nav{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch!important;gap:0!important;background:#fff;border-bottom:1px solid var(--line);padding:6px 22px 16px!important;display:none!important;box-shadow:0 16px 30px -16px rgba(0,0,0,.25)}
+  #sm-head.open #sm-nav{display:flex!important}
+  #sm-nav a{padding:14px 2px!important;border-bottom:1px solid #f0f0f0;font-size:15px!important}
+  #sm-nav a:last-child{border-bottom:none;text-align:center;margin-top:10px}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="sm-head" style="position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:18px 56px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)">
+  <a href="index.html" style="display:block"><img src="project/assets/sixmate-logo-h.png" alt="SIXMATE" style="height:30px;width:auto;display:block"></a>
+  <nav id="sm-nav" style="display:flex;align-items:center;gap:32px">
+    <a href="index.html#business" style="text-decoration:none;font-weight:700;font-size:14px;color:var(--ink)">自社サービス</a>
+    <a href="index.html#services" style="text-decoration:none;font-weight:700;font-size:14px;color:var(--ink)">サービス</a>
+    <a href="works.html" style="text-decoration:none;font-weight:700;font-size:14px;color:var(--ink)">制作実績</a>
+    <a href="news.html" style="text-decoration:none;font-weight:700;font-size:14px;color:var(--ink)">お知らせ</a>
+    <a href="contact.html" style="text-decoration:none;font-weight:700;font-size:14px;color:#fff;background:var(--red);padding:11px 22px">お問い合わせ</a>
+  </nav>
+  <button data-burger aria-label="メニュー" onclick="document.getElementById('sm-head').classList.toggle('open')" style="display:none;flex-direction:column;justify-content:center;gap:5px;width:42px;height:42px;border:1px solid var(--line);background:#fff;cursor:pointer;align-items:center">
+    <span style="display:block;width:18px;height:2px;background:var(--ink)"></span>
+    <span style="display:block;width:18px;height:2px;background:var(--ink)"></span>
+    <span style="display:block;width:18px;height:2px;background:var(--ink)"></span>
+  </button>
+</header>
+
+<!-- PAGE TITLE -->
+<div class="pad" style="position:relative;padding:88px 56px 0;overflow:hidden">
+  <div aria-hidden="true" style="position:absolute;right:-2%;top:-30px;font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(110px,16vw,240px);line-height:.8;color:#f5f5f5;z-index:0;letter-spacing:-.02em">CONTACT</div>
+  <div style="position:relative;z-index:1;max-width:1080px;margin:0 auto">
+    <div style="display:flex;align-items:center;gap:12px;font-family:'Archivo',sans-serif;font-weight:700;font-size:12.5px;letter-spacing:.06em;color:#9a9a9a">
+      <a href="index.html" style="text-decoration:none;color:#9a9a9a">HOME</a><span>/</span><span style="color:var(--ink)">CONTACT</span>
+    </div>
+    <div style="margin-top:18px;font-family:'Archivo',sans-serif;font-weight:800;font-size:13px;letter-spacing:.24em;color:var(--red)">CONTACT</div>
+    <h1 style="margin:12px 0 0;font-weight:900;font-size:clamp(40px,5.4vw,72px);color:var(--ink);letter-spacing:.02em">お問い合わせ</h1>
+  </div>
+</div>
+
+<!-- CHIPS -->
+<div class="pad" style="max-width:760px;margin:40px auto 0;padding:0 56px">
+  <p style="margin:0 0 16px;font-weight:700;font-size:15px;color:var(--ink)">こんなお悩み、ありませんか？</p>
+  <div style="display:flex;flex-wrap:wrap;gap:10px">
+    <span style="font-weight:700;font-size:13.5px;color:var(--ink);background:#f6f6f6;border:1px solid #ededed;padding:10px 16px">HPを作りたい</span>
+    <span style="font-weight:700;font-size:13.5px;color:var(--ink);background:#f6f6f6;border:1px solid #ededed;padding:10px 16px">集客したい</span>
+    <span style="font-weight:700;font-size:13.5px;color:var(--ink);background:#f6f6f6;border:1px solid #ededed;padding:10px 16px">業務効率化したい</span>
+    <span style="font-weight:700;font-size:13.5px;color:var(--ink);background:#f6f6f6;border:1px solid #ededed;padding:10px 16px">AIを活用したい</span>
+    <span style="font-weight:700;font-size:13.5px;color:var(--ink);background:#f6f6f6;border:1px solid #ededed;padding:10px 16px">システムを作りたい</span>
+  </div>
+</div>
+
+<!-- FORM AREA -->
+<div class="pad" style="max-width:760px;margin:54px auto 0;padding:0 56px 110px">
+
+  <p style="margin:0 0 36px;font-weight:500;font-size:14px;line-height:2;color:var(--grey)">サービスに関するご相談・お見積もり・取材など、お気軽にお問い合わせください。<br>担当より2営業日以内にご返信します。</p>
+
+  <!-- Success state -->
+  <div id="success" style="display:none;border:1px solid #ededed;background:#fafafa;padding:64px 40px;text-align:center">
+    <div style="width:64px;height:64px;margin:0 auto;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><path d="M5 13l4 4L19 7"></path></svg>
+    </div>
+    <h3 style="margin:22px 0 0;font-weight:900;font-size:24px;color:var(--ink)">送信が完了しました</h3>
+    <p style="margin:14px 0 0;font-weight:500;font-size:14px;line-height:1.9;color:var(--grey)">お問い合わせありがとうございます。<br>担当より2営業日以内にご返信いたします。</p>
+    <a href="index.html" style="margin-top:28px;text-decoration:none;display:inline-flex;align-items:center;gap:14px;font-weight:700;font-size:14px;color:var(--ink)">トップへ戻る<span style="font-family:'Archivo';color:var(--red)">→</span></a>
+  </div>
+
+  <!-- Form -->
+  <form id="contact-form" onsubmit="handleSubmit(event)" style="display:flex;flex-direction:column;gap:24px">
+
+    <div class="form2" style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+      <label style="display:flex;flex-direction:column;gap:9px">
+        <span style="font-weight:700;font-size:13px;color:var(--ink)">会社名 <span style="color:#bcbcbc;font-weight:500">任意</span></span>
+        <input type="text" placeholder="株式会社○○" style="font-family:'Noto Sans JP',sans-serif;font-size:14px;padding:13px 15px;border:1px solid #d6d6d6;background:#fff">
+      </label>
+      <label style="display:flex;flex-direction:column;gap:9px">
+        <span style="font-weight:700;font-size:13px;color:var(--ink)">お名前 <span style="color:var(--red);font-weight:700;font-size:11px">必須</span></span>
+        <input type="text" required placeholder="山田 太郎" style="font-family:'Noto Sans JP',sans-serif;font-size:14px;padding:13px 15px;border:1px solid #d6d6d6;background:#fff">
+      </label>
+    </div>
+
+    <div class="form2" style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+      <label style="display:flex;flex-direction:column;gap:9px">
+        <span style="font-weight:700;font-size:13px;color:var(--ink)">メールアドレス <span style="color:var(--red);font-weight:700;font-size:11px">必須</span></span>
+        <input type="email" required placeholder="info@example.com" style="font-family:'Noto Sans JP',sans-serif;font-size:14px;padding:13px 15px;border:1px solid #d6d6d6;background:#fff">
+      </label>
+      <label style="display:flex;flex-direction:column;gap:9px">
+        <span style="font-weight:700;font-size:13px;color:var(--ink)">電話番号 <span style="color:#bcbcbc;font-weight:500">任意</span></span>
+        <input type="tel" placeholder="090-0000-0000" style="font-family:'Noto Sans JP',sans-serif;font-size:14px;padding:13px 15px;border:1px solid #d6d6d6;background:#fff">
+      </label>
+    </div>
+
+    <label style="display:flex;flex-direction:column;gap:9px">
+      <span style="font-weight:700;font-size:13px;color:var(--ink)">お問い合わせ種別 <span style="color:var(--red);font-weight:700;font-size:11px">必須</span></span>
+      <select required style="font-family:'Noto Sans JP',sans-serif;font-size:14px;padding:13px 15px;border:1px solid #d6d6d6;background:#fff;color:var(--ink)">
+        <option value="">選択してください</option>
+        <option>Web制作のご相談</option>
+        <option>システム・アプリ開発のご相談</option>
+        <option>コンテンツ制作のご相談</option>
+        <option>IT顧問・DX支援のご相談</option>
+        <option>レポスルについて</option>
+        <option>その他</option>
+      </select>
+    </label>
+
+    <label style="display:flex;flex-direction:column;gap:9px">
+      <span style="font-weight:700;font-size:13px;color:var(--ink)">お問い合わせ内容 <span style="color:var(--red);font-weight:700;font-size:11px">必須</span></span>
+      <textarea required rows="6" placeholder="ご相談内容をご記入ください" style="font-family:'Noto Sans JP',sans-serif;font-size:14px;padding:13px 15px;border:1px solid #d6d6d6;background:#fff;resize:vertical;line-height:1.7"></textarea>
+    </label>
+
+    <button type="submit" style="margin-top:10px;align-self:center;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:40px;justify-content:space-between;min-width:280px;background:var(--red);color:#fff;font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:16px;padding:18px 32px;transition:filter .15s" onmouseover="this.style.filter='brightness(1.08)'" onmouseout="this.style.filter='none'">送信する<span style="font-family:'Archivo'">→</span></button>
+  </form>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="pad" style="background:#0e0e0c;padding:60px 56px 40px">
+  <div style="max-width:1240px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:32px;align-items:center">
+    <a href="index.html" style="display:block"><img src="project/assets/sixmate-logo-h.png" alt="SIXMATE" style="height:30px;width:auto;display:block"></a>
+    <nav style="display:flex;gap:28px;flex-wrap:wrap">
+      <a href="index.html#business" style="text-decoration:none;font-weight:500;font-size:13px;color:#cfcfcf">自社サービス</a>
+      <a href="works.html" style="text-decoration:none;font-weight:500;font-size:13px;color:#cfcfcf">制作実績</a>
+      <a href="news.html" style="text-decoration:none;font-weight:500;font-size:13px;color:#cfcfcf">お知らせ</a>
+      <a href="contact.html" style="text-decoration:none;font-weight:500;font-size:13px;color:#cfcfcf">お問い合わせ</a>
+    </nav>
+  </div>
+  <div style="max-width:1240px;margin:36px auto 0;padding-top:22px;border-top:1px solid #26261f;font-family:'Archivo',sans-serif;font-size:12px;color:#6a6a6a">© 2026 SIXMATE Inc. All rights reserved.</div>
+</footer>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  document.getElementById('contact-form').style.display = 'none';
+  document.getElementById('success').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
