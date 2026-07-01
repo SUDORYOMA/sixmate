@@ -48,6 +48,18 @@ body{font-family:'Noto Sans JP',sans-serif}
 @keyframes sm-scroll{0%{transform:translateY(0);opacity:0}30%{opacity:1}100%{transform:translateY(34px);opacity:0}}
 @keyframes sm-fadeup{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 @keyframes sm-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes sm-rise{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+@keyframes sm-riseL{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes sm-riseR{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes sm-pop{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+@keyframes sm-lineGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media(prefers-reduced-motion:no-preference){
+  [data-anim="rise"]{animation:sm-rise both linear;animation-timeline:view();animation-range:entry 4% cover 26%}
+  [data-anim="left"]{animation:sm-riseL both linear;animation-timeline:view();animation-range:entry 4% cover 30%}
+  [data-anim="right"]{animation:sm-riseR both linear;animation-timeline:view();animation-range:entry 4% cover 30%}
+  [data-anim="pop"]{animation:sm-pop both linear;animation-timeline:view();animation-range:entry 4% cover 26%}
+  [data-anim-group]>*{animation:sm-rise both linear;animation-timeline:view();animation-range:entry 2% cover 22%}
+}
 #logos-wrap:hover #logos-track{animation-play-state:paused}
 [data-burger]{display:none}
 @media(max-width:980px){
@@ -80,6 +92,11 @@ body{font-family:'Noto Sans JP',sans-serif}
   #stats-bar>div{flex:1 1 100%!important}
   section{padding-top:74px!important;padding-bottom:74px!important}
   #result-h{white-space:normal!important}
+  #hero-right>div{flex-direction:column!important;align-items:stretch!important;gap:14px!important}
+  #hero-right>div>div:first-child{min-height:200px!important}
+  #hero-right>div>div:last-child{width:100%!important;min-width:0!important;text-align:left!important;padding:0!important}
+  #hero-right>div>div:last-child>div:first-child{border-right:none!important;border-left:3px solid var(--red)!important;padding-left:8px!important;padding-right:0!important}
+  #hero-right>div>div:last-child>div:last-child{justify-content:flex-start!important}
 }
 </style>
 </head>
@@ -121,17 +138,17 @@ body{font-family:'Noto Sans JP',sans-serif}
   </div>
 
   <!-- CENTER BRAND MARK -->
-  <div id="center-mark" aria-hidden="true" style="position:absolute;left:29%;top:48%;transform:translate(-50%,-50%);width:clamp(190px,20vw,290px);z-index:1;animation:sm-fadeup .8s ease both">
+  <div id="center-mark" aria-hidden="true" style="position:absolute;left:29%;top:29%;transform:translate(-50%,-50%);width:clamp(190px,20vw,290px);z-index:1;animation:sm-fadeup .8s ease both">
     <img src="project/assets/sixmate-mark.png" alt="" style="width:100%;display:block;filter:drop-shadow(0 14px 30px rgba(227,0,15,.22))">
   </div>
 
   <!-- LEFT: copy -->
   <div id="hero-left" style="position:relative;z-index:3;width:46%;min-width:480px;padding:64px 0 0 56px;display:flex;flex-direction:column">
-    <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:13px;letter-spacing:.24em;color:var(--red)">NEW STANDARD</div>
-    <h1 style="margin:18px 0 0;font-weight:900;font-size:clamp(52px,6.6vw,98px);line-height:1.06;letter-spacing:.01em;color:var(--ink)">アイデアを、<br><span style="color:var(--red)">事業に。</span></h1>
-    <p style="margin:26px 0 0;font-weight:700;font-size:clamp(18px,1.7vw,24px);letter-spacing:.02em;color:var(--ink)">ITで事業を創り、育てるパートナー。</p>
-    <p style="margin:20px 0 0;max-width:30em;font-weight:500;font-size:15px;line-height:2;color:var(--grey)">SIXMATEは、自社事業の運営で得たリアルな経験とノウハウをもとに、テクノロジーとクリエイティブの力で、企業の成長を支援します。</p>
-    <div style="margin-top:34px;display:flex;gap:16px;flex-wrap:wrap">
+    <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:13px;letter-spacing:.24em;color:var(--red);animation:sm-fadeup .7s ease both;animation-delay:.05s">NEW STANDARD</div>
+    <h1 style="margin:18px 0 0;font-weight:900;font-size:clamp(52px,6.6vw,98px);line-height:1.06;letter-spacing:.01em;color:var(--ink);animation:sm-fadeup .7s ease both;animation-delay:.14s">アイデアを、<br><span style="color:var(--red)">事業に。</span></h1>
+    <p style="margin:26px 0 0;font-weight:700;font-size:clamp(18px,1.7vw,24px);letter-spacing:.02em;color:var(--ink);animation:sm-fadeup .7s ease both;animation-delay:.24s">ITで事業を創り、育てるパートナー。</p>
+    <p style="margin:20px 0 0;max-width:30em;font-weight:500;font-size:15px;line-height:2;color:var(--grey);animation:sm-fadeup .7s ease both;animation-delay:.32s">SIXMATEは、自社事業の運営で得たリアルな経験とノウハウをもとに、テクノロジーとクリエイティブの力で、企業の成長を支援します。</p>
+    <div style="margin-top:34px;display:flex;gap:16px;flex-wrap:wrap;animation:sm-fadeup .7s ease both;animation-delay:.42s">
       <a href="contact.html" style="text-decoration:none;display:inline-flex;align-items:center;justify-content:space-between;gap:34px;min-width:198px;background:var(--red);color:#fff;font-weight:700;font-size:15px;padding:17px 26px" onmouseover="this.style.filter='brightness(1.08)'" onmouseout="this.style.filter=''">お問い合わせ<span style="font-family:'Archivo'">→</span></a>
       <a href="works.html" style="text-decoration:none;display:inline-flex;align-items:center;justify-content:space-between;gap:34px;min-width:198px;background:#fff;color:var(--ink);font-weight:700;font-size:15px;padding:16px 26px;border:1.5px solid #cfcfcf" onmouseover="this.style.borderColor='var(--ink)'" onmouseout="this.style.borderColor='#cfcfcf'">制作実績を見る<span style="font-family:'Archivo';color:var(--red)">→</span></a>
     </div>
@@ -292,12 +309,51 @@ body{font-family:'Noto Sans JP',sans-serif}
   </div>
 </div>
 
+<!-- LOGO MARQUEE -->
+<div id="logos-wrap" style="position:relative;background:#fafafa;border-top:1px solid #ededed;border-bottom:1px solid #ededed;padding:34px 0;overflow:hidden;font-family:'Noto Sans JP',sans-serif">
+  <div style="text-align:center;font-family:'Archivo',sans-serif;font-weight:800;font-size:11px;letter-spacing:.22em;color:#9a9a9a;margin-bottom:24px">TRUSTED BY OUR CLIENTS</div>
+  <div id="logos-track" style="display:flex;width:max-content;animation:sm-marquee 34s linear infinite">
+    <span style="flex:none;display:flex;align-items:center;justify-content:center;padding:0 40px;font-weight:900;font-size:23px;color:#c2c2c2;white-space:nowrap;letter-spacing:.01em">ワイクレスト</span>
+    <span style="flex:none;display:flex;align-items:center;justify-content:center;padding:0 40px;font-weight:900;font-size:23px;color:#c2c2c2;white-space:nowrap;letter-spacing:.01em">YKマネジメント</span>
+    <span style="flex:none;display:flex;align-items:center;justify-content:center;padding:0 40px;font-weight:900;font-size:23px;color:#c2c2c2;white-space:nowrap;letter-spacing:.01em">昭波</span>
+    <span style="flex:none;display:flex;align-items:center;justify-content:center;padding:0 40px;font-weight:900;font-size:23px;color:#c2c2c2;white-space:nowrap;letter-spacing:.01em">昭和企画</span>
+    <span style="flex:none;display:flex;align-items:center;justify-content:center;padding:0 40px;font-weight:900;font-size:23px;color:#c2c2c2;white-space:nowrap;letter-spacing:.01em">TOUSEN</span>
+    <span style="flex:none;display:flex;align-items:center;justify-content:center;padding:0 40px;font-weight:900;font-size:23px;color:#c2c2c2;white-space:nowrap;letter-spacing:.01em">長嶋建設</span>
+    <span style="flex:none;display:flex;align-items:center;justify-content:center;padding:0 40px;font-weight:900;font-size:23px;color:#c2c2c2;white-space:nowrap;letter-spacing:.01em">中央機工</span>
+    <span style="flex:none;display:flex;align-items:center;justify-content:center;padding:0 40px;font-weight:900;font-size:23px;color:#c2c2c2;white-space:nowrap;letter-spacing:.01em">アセットトレイン</span>
+    <span style="flex:none;display:flex;align-items:center;justify-content:center;padding:0 40px;font-weight:900;font-size:23px;color:#c2c2c2;white-space:nowrap;letter-spacing:.01em">青山</span>
+    <span style="flex:none;display:flex;align-items:center;justify-content:center;padding:0 40px;font-weight:900;font-size:23px;color:#c2c2c2;white-space:nowrap;letter-spacing:.01em">大虎</span>
+    <span style="flex:none;display:flex;align-items:center;justify-content:center;padding:0 40px;font-weight:900;font-size:23px;color:#c2c2c2;white-space:nowrap;letter-spacing:.01em">志田工業</span>
+    <span style="flex:none;display:flex;align-items:center;justify-content:center;padding:0 40px;font-weight:900;font-size:23px;color:#c2c2c2;white-space:nowrap;letter-spacing:.01em">西宮工業</span>
+    <span style="flex:none;display:flex;align-items:center;justify-content:center;padding:0 40px;font-weight:900;font-size:23px;color:#c2c2c2;white-space:nowrap;letter-spacing:.01em">大栄</span>
+    <span style="flex:none;display:flex;align-items:center;justify-content:center;padding:0 40px;font-weight:900;font-size:23px;color:#c2c2c2;white-space:nowrap;letter-spacing:.01em">アクティフィス在宅ケア</span>
+    <span style="flex:none;display:flex;align-items:center;justify-content:center;padding:0 40px;font-weight:900;font-size:23px;color:#c2c2c2;white-space:nowrap;letter-spacing:.01em">日野興業</span>
+    <span style="flex:none;display:flex;align-items:center;justify-content:center;padding:0 40px;font-weight:900;font-size:23px;color:#c2c2c2;white-space:nowrap;letter-spacing:.01em">井上工業</span>
+    <span style="flex:none;display:flex;align-items:center;justify-content:center;padding:0 40px;font-weight:900;font-size:23px;color:#c2c2c2;white-space:nowrap;letter-spacing:.01em">ワイクレスト</span>
+    <span style="flex:none;display:flex;align-items:center;justify-content:center;padding:0 40px;font-weight:900;font-size:23px;color:#c2c2c2;white-space:nowrap;letter-spacing:.01em">YKマネジメント</span>
+    <span style="flex:none;display:flex;align-items:center;justify-content:center;padding:0 40px;font-weight:900;font-size:23px;color:#c2c2c2;white-space:nowrap;letter-spacing:.01em">昭波</span>
+    <span style="flex:none;display:flex;align-items:center;justify-content:center;padding:0 40px;font-weight:900;font-size:23px;color:#c2c2c2;white-space:nowrap;letter-spacing:.01em">昭和企画</span>
+    <span style="flex:none;display:flex;align-items:center;justify-content:center;padding:0 40px;font-weight:900;font-size:23px;color:#c2c2c2;white-space:nowrap;letter-spacing:.01em">TOUSEN</span>
+    <span style="flex:none;display:flex;align-items:center;justify-content:center;padding:0 40px;font-weight:900;font-size:23px;color:#c2c2c2;white-space:nowrap;letter-spacing:.01em">長嶋建設</span>
+    <span style="flex:none;display:flex;align-items:center;justify-content:center;padding:0 40px;font-weight:900;font-size:23px;color:#c2c2c2;white-space:nowrap;letter-spacing:.01em">中央機工</span>
+    <span style="flex:none;display:flex;align-items:center;justify-content:center;padding:0 40px;font-weight:900;font-size:23px;color:#c2c2c2;white-space:nowrap;letter-spacing:.01em">アセットトレイン</span>
+    <span style="flex:none;display:flex;align-items:center;justify-content:center;padding:0 40px;font-weight:900;font-size:23px;color:#c2c2c2;white-space:nowrap;letter-spacing:.01em">青山</span>
+    <span style="flex:none;display:flex;align-items:center;justify-content:center;padding:0 40px;font-weight:900;font-size:23px;color:#c2c2c2;white-space:nowrap;letter-spacing:.01em">大虎</span>
+    <span style="flex:none;display:flex;align-items:center;justify-content:center;padding:0 40px;font-weight:900;font-size:23px;color:#c2c2c2;white-space:nowrap;letter-spacing:.01em">志田工業</span>
+    <span style="flex:none;display:flex;align-items:center;justify-content:center;padding:0 40px;font-weight:900;font-size:23px;color:#c2c2c2;white-space:nowrap;letter-spacing:.01em">西宮工業</span>
+    <span style="flex:none;display:flex;align-items:center;justify-content:center;padding:0 40px;font-weight:900;font-size:23px;color:#c2c2c2;white-space:nowrap;letter-spacing:.01em">大栄</span>
+    <span style="flex:none;display:flex;align-items:center;justify-content:center;padding:0 40px;font-weight:900;font-size:23px;color:#c2c2c2;white-space:nowrap;letter-spacing:.01em">アクティフィス在宅ケア</span>
+    <span style="flex:none;display:flex;align-items:center;justify-content:center;padding:0 40px;font-weight:900;font-size:23px;color:#c2c2c2;white-space:nowrap;letter-spacing:.01em">日野興業</span>
+    <span style="flex:none;display:flex;align-items:center;justify-content:center;padding:0 40px;font-weight:900;font-size:23px;color:#c2c2c2;white-space:nowrap;letter-spacing:.01em">井上工業</span>
+  </div>
+</div>
+
 <!-- SEC 2: 課題提起 -->
 <section style="position:relative;background:#fff;padding:120px 56px">
   <div style="max-width:980px;margin:0 auto;text-align:center">
     <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:13px;letter-spacing:.24em;color:var(--red)">WHY SIXMATE</div>
-    <h2 style="margin:22px 0 0;font-weight:900;font-size:clamp(34px,4.6vw,62px);line-height:1.28;letter-spacing:.01em;color:var(--ink)">作るだけでは、解決しない。</h2>
-    <div style="margin:52px auto 0;display:flex;flex-direction:column;gap:14px;max-width:560px">
+    <h2 data-anim="rise" style="margin:22px 0 0;font-weight:900;font-size:clamp(34px,4.6vw,62px);line-height:1.28;letter-spacing:.01em;color:var(--ink)">作るだけでは、解決しない。</h2>
+    <div data-anim-group style="margin:52px auto 0;display:flex;flex-direction:column;gap:14px;max-width:560px">
       <div style="display:flex;align-items:center;gap:16px;padding:18px 26px;background:#fafafa;border:1px solid #ededed;font-weight:700;font-size:clamp(17px,2vw,21px);color:#9a9a9a"><span style="color:#cfcfcf;font-family:'Archivo';font-weight:900">01</span>ホームページを作った。</div>
       <div style="display:flex;align-items:center;gap:16px;padding:18px 26px;background:#fafafa;border:1px solid #ededed;font-weight:700;font-size:clamp(17px,2vw,21px);color:#9a9a9a"><span style="color:#cfcfcf;font-family:'Archivo';font-weight:900">02</span>システムを導入した。</div>
       <div style="display:flex;align-items:center;gap:16px;padding:18px 26px;background:var(--ink);border:1px solid var(--ink);font-weight:900;font-size:clamp(18px,2.1vw,23px);color:#fff"><span style="color:var(--red);font-family:'Archivo';font-weight:900">03</span>でも、成果が出ない。</div>
@@ -316,11 +372,11 @@ body{font-family:'Noto Sans JP',sans-serif}
     <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:18px;margin-bottom:54px">
       <div>
         <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:13px;letter-spacing:.24em;color:var(--red)">OUR STRENGTH</div>
-        <h2 style="margin:14px 0 0;font-weight:900;font-size:clamp(30px,3.8vw,48px);color:var(--ink);letter-spacing:.02em">SIXMATEの特徴</h2>
+        <h2 data-anim="rise" style="margin:14px 0 0;font-weight:900;font-size:clamp(30px,3.8vw,48px);color:var(--ink);letter-spacing:.02em">SIXMATEの特徴</h2>
       </div>
       <p style="max-width:30em;font-weight:500;font-size:14px;line-height:1.9;color:var(--grey);margin:0">「作れる」会社は数多くあります。私たちが大切にするのは、その先で<strong style="color:var(--ink)">成果を出し切る</strong>ための4つの強み。</p>
     </div>
-    <div id="features" style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px">
+    <div id="features" data-anim-group style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px">
       <div style="background:#fff;border:1px solid #ededed;padding:30px 26px 32px;display:flex;flex-direction:column">
         <div style="font-family:'Archivo',sans-serif;font-weight:900;font-size:40px;color:#f0d9da;line-height:1;letter-spacing:-.02em">01</div>
         <h3 style="margin:18px 0 0;font-weight:900;font-size:22px;color:var(--ink)">自社事業運営</h3>
@@ -369,12 +425,12 @@ body{font-family:'Noto Sans JP',sans-serif}
   <div style="max-width:1240px;margin:0 auto">
     <div style="text-align:center;margin-bottom:70px">
       <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:13px;letter-spacing:.24em;color:var(--red)">OUR BUSINESS</div>
-      <h2 style="margin:14px 0 0;font-weight:900;font-size:clamp(34px,4.6vw,60px);color:var(--ink);letter-spacing:.02em">自社サービス</h2>
+      <h2 data-anim="rise" style="margin:14px 0 0;font-weight:900;font-size:clamp(34px,4.6vw,60px);color:var(--ink);letter-spacing:.02em">自社サービス</h2>
       <p style="margin:20px auto 0;max-width:40em;font-weight:500;font-size:15px;line-height:1.95;color:var(--grey)">私たちは「作る会社」である前に、<strong style="color:var(--ink)">事業を運営する会社</strong>です。<br>自ら立ち上げ、育ててきたサービスがあります。</p>
     </div>
 
     <!-- レポスル -->
-    <div id="biz1" style="display:grid;grid-template-columns:1.1fr .9fr;gap:54px;align-items:center;margin-bottom:90px">
+    <div id="biz1" data-anim-group style="display:grid;grid-template-columns:1.1fr .9fr;gap:54px;align-items:center;margin-bottom:90px">
       <div style="position:relative">
         <div style="position:absolute;top:-22px;left:-10px;font-family:'Archivo',sans-serif;font-weight:900;font-size:120px;color:#f5f5f5;line-height:1;z-index:0">01</div>
         <div style="position:relative;z-index:1;width:100%;height:440px;background:#eef1f0;box-shadow:0 30px 60px -30px rgba(0,0,0,.28);overflow:hidden">
@@ -399,7 +455,13 @@ body{font-family:'Noto Sans JP',sans-serif}
     </div>
 
     <!-- かずさ街コン -->
-    <div id="biz2" style="display:grid;grid-template-columns:.9fr 1.1fr;gap:54px;align-items:center">
+    <div id="biz2" data-anim-group style="display:grid;grid-template-columns:1.1fr .9fr;gap:54px;align-items:center">
+      <div style="position:relative">
+        <div style="position:absolute;top:-22px;left:-10px;font-family:'Archivo',sans-serif;font-weight:900;font-size:120px;color:#f5f5f5;line-height:1;z-index:0">02</div>
+        <div style="position:relative;z-index:1;width:100%;height:440px;background:#efeae6;box-shadow:0 30px 60px -30px rgba(0,0,0,.28);overflow:hidden">
+          <img src="project/assets/biz-kazusa.png" alt="かずさ街コン" onerror="this.style.display='none'" style="width:100%;height:100%;object-fit:cover;display:block">
+        </div>
+      </div>
       <div>
         <div style="display:flex;gap:8px;margin-bottom:18px">
           <span style="font-weight:700;font-size:11.5px;color:#fff;background:var(--red);padding:5px 12px">自社事業</span>
@@ -415,12 +477,6 @@ body{font-family:'Noto Sans JP',sans-serif}
         </div>
         <a href="https://kazusacon.com" target="_blank" rel="noopener" style="margin-top:34px;text-decoration:none;display:inline-flex;align-items:center;gap:30px;justify-content:space-between;min-width:200px;background:var(--ink);color:#fff;font-weight:700;font-size:15px;padding:16px 26px" onmouseover="this.style.background='var(--red)'" onmouseout="this.style.background='var(--ink)'">詳しく見る<span style="font-family:'Archivo'">→</span></a>
       </div>
-      <div style="position:relative">
-        <div style="position:absolute;top:-22px;right:-10px;font-family:'Archivo',sans-serif;font-weight:900;font-size:120px;color:#f5f5f5;line-height:1;z-index:0">02</div>
-        <div style="position:relative;z-index:1;width:100%;height:440px;background:#efeae6;box-shadow:0 30px 60px -30px rgba(0,0,0,.28);overflow:hidden">
-          <img src="project/assets/biz-kazusa.png" alt="かずさ街コン" onerror="this.style.display='none'" style="width:100%;height:100%;object-fit:cover;display:block">
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -431,11 +487,11 @@ body{font-family:'Noto Sans JP',sans-serif}
     <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:18px;margin-bottom:50px">
       <div>
         <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:13px;letter-spacing:.24em;color:var(--red)">SERVICES</div>
-        <h2 style="margin:14px 0 0;font-weight:900;font-size:clamp(30px,3.8vw,48px);color:#fff;letter-spacing:.02em">サービス一覧</h2>
+        <h2 data-anim="rise" style="margin:14px 0 0;font-weight:900;font-size:clamp(30px,3.8vw,48px);color:#fff;letter-spacing:.02em">サービス一覧</h2>
       </div>
       <p style="max-width:28em;font-weight:500;font-size:14px;line-height:1.9;color:#b9b9b9;margin:0">企画から運用まで、事業の成長に必要なものを一気通貫で。</p>
     </div>
-    <div id="svc-grid" style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px">
+    <div id="svc-grid" data-anim-group style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px">
       <div style="background:#1f231f;border:1px solid #2c2f2c;padding:28px 22px 26px;display:flex;flex-direction:column;min-height:240px">
         <div style="display:flex;align-items:center;justify-content:space-between">
           <div style="width:46px;height:46px;flex:none;border-radius:10px;background:rgba(227,0,15,.14);display:flex;align-items:center;justify-content:center;color:var(--red)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><line x1="10" y1="18.5" x2="14" y2="18.5"/></svg></div>
@@ -506,12 +562,12 @@ body{font-family:'Noto Sans JP',sans-serif}
     <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:18px;margin-bottom:54px">
       <div>
         <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:13px;letter-spacing:.24em;color:var(--red)">WORKS</div>
-        <h2 style="margin:14px 0 0;font-weight:900;font-size:clamp(34px,4.6vw,60px);color:var(--ink);letter-spacing:.02em">制作実績</h2>
+        <h2 data-anim="rise" style="margin:14px 0 0;font-weight:900;font-size:clamp(34px,4.6vw,60px);color:var(--ink);letter-spacing:.02em">制作実績</h2>
       </div>
       <p style="max-width:26em;font-weight:500;font-size:14px;line-height:1.9;color:var(--grey);margin:0">成果につながった事例を、業種を問わず。<strong style="color:var(--ink)">「作って終わり」ではない</strong>仕事を。</p>
     </div>
 
-    <div id="works-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:36px 24px">
+    <div id="works-grid" data-anim-group style="display:grid;grid-template-columns:repeat(3,1fr);gap:36px 24px">
 
       <!-- 1: 西宮工業 (公開中) -->
       <a href="https://nishimiyakogyo.co.jp/" target="_blank" rel="noopener" style="text-decoration:none;display:block">
@@ -584,6 +640,28 @@ body{font-family:'Noto Sans JP',sans-serif}
         <p style="margin:10px 0 0;font-weight:500;font-size:13px;line-height:1.7;color:var(--grey)">予定とTODOを統合管理するスケジュールアプリを開発中</p>
       </a>
 
+      <!-- 7: 昭波 (開発中) -->
+      <a href="#" style="text-decoration:none;display:block">
+        <div style="position:relative;overflow:hidden;background:#1a1a1c;height:240px;display:flex;align-items:center;justify-content:center">
+          <img src="project/assets/work-shouwa.png" alt="昭波" onerror="this.style.display='none'" style="display:block;width:100%;height:100%;object-fit:cover;position:absolute;inset:0">
+          <span style="position:absolute;left:14px;top:14px;display:inline-flex;align-items:center;gap:6px;background:rgba(227,0,15,.92);color:#fff;font-weight:700;font-size:11px;letter-spacing:.04em;padding:6px 12px"><span style="width:6px;height:6px;border-radius:50%;background:#fff"></span>開発中</span>
+        </div>
+        <div style="margin-top:14px;display:flex;align-items:center;gap:10px"><span style="font-weight:700;font-size:11px;color:var(--red);background:#fdeced;padding:4px 10px">Web制作</span><span style="font-weight:900;font-size:20px;color:var(--ink)">昭波</span></div>
+        <div style="margin-top:10px;font-weight:500;font-size:12.5px;color:#9a9a9a"><span>2026.07 リリース目標</span></div>
+        <p style="margin:10px 0 0;font-weight:500;font-size:13px;line-height:1.7;color:var(--grey)">足場・鳶・鍛冶・イベント設営の強みを伝えるコーポレートサイトを開発中</p>
+      </a>
+
+      <!-- 8: 大栄 (開発中) -->
+      <a href="#" style="text-decoration:none;display:block">
+        <div style="position:relative;overflow:hidden;background:#0f2030;height:240px;display:flex;align-items:center;justify-content:center">
+          <img src="project/assets/work-daiei.png" alt="大栄" onerror="this.style.display='none'" style="display:block;width:100%;height:100%;object-fit:cover;position:absolute;inset:0">
+          <span style="position:absolute;left:14px;top:14px;display:inline-flex;align-items:center;gap:6px;background:rgba(227,0,15,.92);color:#fff;font-weight:700;font-size:11px;letter-spacing:.04em;padding:6px 12px"><span style="width:6px;height:6px;border-radius:50%;background:#fff"></span>開発中</span>
+        </div>
+        <div style="margin-top:14px;display:flex;align-items:center;gap:10px"><span style="font-weight:700;font-size:11px;color:var(--red);background:#fdeced;padding:4px 10px">Web制作</span><span style="font-weight:900;font-size:20px;color:var(--ink)">大栄</span></div>
+        <div style="margin-top:10px;font-weight:500;font-size:12.5px;color:#9a9a9a"><span>2026.07 リリース目標</span></div>
+        <p style="margin:10px 0 0;font-weight:500;font-size:13px;line-height:1.7;color:var(--grey)">SNSからの求人獲得を目的としたLPを制作中</p>
+      </a>
+
     </div>
 
     <div style="margin-top:56px;text-align:center">
@@ -600,8 +678,8 @@ body{font-family:'Noto Sans JP',sans-serif}
   <div style="position:relative;z-index:1;max-width:1000px;margin:0 auto;text-align:center">
     <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:13px;letter-spacing:.24em;color:var(--red)">WHAT WE CREATE</div>
     <h2 style="margin:30px 0 0;font-weight:700;font-size:clamp(26px,3.4vw,44px);line-height:1.5;color:#dadada;letter-spacing:.02em">私たちが作るのは、</h2>
-    <p style="margin:18px 0 0;font-weight:500;font-size:clamp(20px,2.4vw,30px);line-height:1.6;color:#7c7c7c">システムではありません。<br>ホームページでもありません。</p>
-    <p id="result-h" style="margin:36px 0 0;font-weight:900;font-size:clamp(38px,6.4vw,92px);line-height:1.1;letter-spacing:.01em;color:#fff;white-space:nowrap">お客様の、<span style="color:var(--red)">成果</span>です。</p>
+    <p data-anim="rise" style="margin:18px 0 0;font-weight:500;font-size:clamp(20px,2.4vw,30px);line-height:1.6;color:#7c7c7c">システムではありません。<br>ホームページでもありません。</p>
+    <p id="result-h" data-anim="pop" style="margin:36px 0 0;font-weight:900;font-size:clamp(38px,6.4vw,92px);line-height:1.1;letter-spacing:.01em;color:#fff;white-space:nowrap">お客様の、<span style="color:var(--red)">成果</span>です。</p>
   </div>
 </section>
 
@@ -610,29 +688,29 @@ body{font-family:'Noto Sans JP',sans-serif}
   <div style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:300px 1fr;gap:48px" id="news-grid">
     <div>
       <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:13px;letter-spacing:.24em;color:var(--red)">NEWS</div>
-      <h2 style="margin:14px 0 26px;font-weight:900;font-size:clamp(28px,3.4vw,42px);color:var(--ink)">お知らせ</h2>
+      <h2 data-anim="rise" style="margin:14px 0 26px;font-weight:900;font-size:clamp(28px,3.4vw,42px);color:var(--ink)">お知らせ</h2>
       <a href="news.html" style="text-decoration:none;display:inline-flex;align-items:center;gap:14px;font-family:'Archivo',sans-serif;font-weight:800;font-size:13px;letter-spacing:.1em;color:var(--ink)">VIEW ALL<span style="color:var(--red)">→</span></a>
     </div>
-    <div style="border-top:1px solid #ededed">
+    <div data-anim-group style="border-top:1px solid #ededed">
       <a href="news.html" style="text-decoration:none;display:flex;align-items:center;gap:24px;padding:22px 4px;border-bottom:1px solid #ededed">
-        <span style="font-family:'Archivo',sans-serif;font-weight:700;font-size:14px;color:#9a9a9a;flex:none;width:96px">2026.05.28</span>
-        <span style="flex:none;width:78px;text-align:center;font-weight:700;font-size:11.5px;color:var(--red);border:1px solid #f0c9cc;padding:4px 0">実績</span>
-        <span style="font-weight:700;font-size:15px;color:var(--ink);line-height:1.6">松戸総建様の外壁塗装サイトをリニューアル公開しました</span>
-      </a>
-      <a href="news.html" style="text-decoration:none;display:flex;align-items:center;gap:24px;padding:22px 4px;border-bottom:1px solid #ededed">
-        <span style="font-family:'Archivo',sans-serif;font-weight:700;font-size:14px;color:#9a9a9a;flex:none;width:96px">2026.05.12</span>
-        <span style="flex:none;width:78px;text-align:center;font-weight:700;font-size:11.5px;color:var(--red);border:1px solid #f0c9cc;padding:4px 0">レポスル</span>
-        <span style="font-weight:700;font-size:15px;color:var(--ink);line-height:1.6">レポスルの導入企業が500社を突破しました</span>
-      </a>
-      <a href="news.html" style="text-decoration:none;display:flex;align-items:center;gap:24px;padding:22px 4px;border-bottom:1px solid #ededed">
-        <span style="font-family:'Archivo',sans-serif;font-weight:700;font-size:14px;color:#9a9a9a;flex:none;width:96px">2026.04.20</span>
-        <span style="flex:none;width:78px;text-align:center;font-weight:700;font-size:11.5px;color:var(--red);border:1px solid #f0c9cc;padding:4px 0">街コン</span>
-        <span style="font-weight:700;font-size:15px;color:var(--ink);line-height:1.6">「かずさ街コン」春開催、累計参加者20,000名を達成</span>
-      </a>
-      <a href="news.html" style="text-decoration:none;display:flex;align-items:center;gap:24px;padding:22px 4px;border-bottom:1px solid #ededed">
-        <span style="font-family:'Archivo',sans-serif;font-weight:700;font-size:14px;color:#9a9a9a;flex:none;width:96px">2026.04.03</span>
+        <span style="font-family:'Archivo',sans-serif;font-weight:700;font-size:14px;color:#9a9a9a;flex:none;width:96px">2026.06.21</span>
         <span style="flex:none;width:78px;text-align:center;font-weight:700;font-size:11.5px;color:var(--red);border:1px solid #f0c9cc;padding:4px 0">お知らせ</span>
-        <span style="font-weight:700;font-size:15px;color:var(--ink);line-height:1.6">生成AIを活用した営業資料制作の新サービスを開始</span>
+        <span style="font-weight:700;font-size:15px;color:var(--ink);line-height:1.6">自社HPをリニューアル公開しました</span>
+      </a>
+      <a href="news.html" style="text-decoration:none;display:flex;align-items:center;gap:24px;padding:22px 4px;border-bottom:1px solid #ededed">
+        <span style="font-family:'Archivo',sans-serif;font-weight:700;font-size:14px;color:#9a9a9a;flex:none;width:96px">2026.06.19</span>
+        <span style="flex:none;width:78px;text-align:center;font-weight:700;font-size:11.5px;color:var(--red);border:1px solid #f0c9cc;padding:4px 0">実績</span>
+        <span style="font-weight:700;font-size:15px;color:var(--ink);line-height:1.6">松戸総建様のHPを公開しました</span>
+      </a>
+      <a href="news.html" style="text-decoration:none;display:flex;align-items:center;gap:24px;padding:22px 4px;border-bottom:1px solid #ededed">
+        <span style="font-family:'Archivo',sans-serif;font-weight:700;font-size:14px;color:#9a9a9a;flex:none;width:96px">2026.06.18</span>
+        <span style="flex:none;width:78px;text-align:center;font-weight:700;font-size:11.5px;color:var(--red);border:1px solid #f0c9cc;padding:4px 0">実績</span>
+        <span style="font-weight:700;font-size:15px;color:var(--ink);line-height:1.6">西宮工業様のHPを公開しました</span>
+      </a>
+      <a href="news.html" style="text-decoration:none;display:flex;align-items:center;gap:24px;padding:22px 4px;border-bottom:1px solid #ededed">
+        <span style="font-family:'Archivo',sans-serif;font-weight:700;font-size:14px;color:#9a9a9a;flex:none;width:96px">2026.05.31</span>
+        <span style="flex:none;width:78px;text-align:center;font-weight:700;font-size:11.5px;color:var(--red);border:1px solid #f0c9cc;padding:4px 0">街コン</span>
+        <span style="font-weight:700;font-size:15px;color:var(--ink);line-height:1.6">木更津街コン開催。計38名、カップル4組が誕生しました</span>
       </a>
     </div>
   </div>
@@ -643,7 +721,7 @@ body{font-family:'Noto Sans JP',sans-serif}
   <div style="max-width:1240px;margin:0 auto">
     <div style="text-align:center;margin-bottom:64px">
       <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:13px;letter-spacing:.24em;color:var(--red)">COMPANY</div>
-      <h2 style="margin:14px 0 0;font-weight:900;font-size:clamp(34px,4.6vw,60px);color:var(--ink);letter-spacing:.02em">会社概要</h2>
+      <h2 data-anim="rise" style="margin:14px 0 0;font-weight:900;font-size:clamp(34px,4.6vw,60px);color:var(--ink);letter-spacing:.02em">会社概要</h2>
     </div>
     <div id="company-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start">
       <div>
@@ -675,8 +753,8 @@ body{font-family:'Noto Sans JP',sans-serif}
   </div>
   <div style="position:relative;z-index:1;max-width:1080px;margin:0 auto;text-align:center">
     <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:13px;letter-spacing:.24em;color:rgba(255,255,255,.8)">CONTACT</div>
-    <h2 style="margin:18px 0 0;font-weight:900;font-size:clamp(30px,4.4vw,56px);color:#fff;letter-spacing:.02em">こんなお悩み、ありませんか？</h2>
-    <div style="margin:46px auto 0;display:flex;flex-wrap:wrap;gap:12px;justify-content:center;max-width:840px">
+    <h2 data-anim="rise" style="margin:18px 0 0;font-weight:900;font-size:clamp(30px,4.4vw,56px);color:#fff;letter-spacing:.02em">こんなお悩み、ありませんか？</h2>
+    <div data-anim-group style="margin:46px auto 0;display:flex;flex-wrap:wrap;gap:12px;justify-content:center;max-width:840px">
       <span style="background:rgba(255,255,255,.14);color:#fff;font-weight:700;font-size:15px;padding:14px 22px;border:1px solid rgba(255,255,255,.3)">HPを作りたい</span>
       <span style="background:rgba(255,255,255,.14);color:#fff;font-weight:700;font-size:15px;padding:14px 22px;border:1px solid rgba(255,255,255,.3)">集客したい</span>
       <span style="background:rgba(255,255,255,.14);color:#fff;font-weight:700;font-size:15px;padding:14px 22px;border:1px solid rgba(255,255,255,.3)">業務効率化したい</span>
