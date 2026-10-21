@@ -192,9 +192,45 @@ body{font-family:'Noto Sans JP',sans-serif}
   #hero-right>div>div:last-child>div:first-child{border-right:none!important;border-left:3px solid var(--red)!important;padding-left:8px!important;padding-right:0!important}
   #hero-right>div>div:last-child>div:last-child{justify-content:flex-start!important}
 }
+
+/* --- Scroll Progress Bar --- */
+#sm-progress{position:fixed;top:0;left:0;height:3px;background:var(--red);z-index:100;width:0;pointer-events:none}
+/* --- Sticky CTA --- */
+#sticky-cta{position:fixed;bottom:88px;right:28px;z-index:50;pointer-events:none}
+#sticky-cta.visible{pointer-events:auto}
+.sticky-btn{display:inline-flex;align-items:center;gap:10px;background:var(--red);color:#fff;font-weight:700;font-size:14px;padding:13px 22px;text-decoration:none;opacity:0;transform:translateY(12px);transition:opacity .3s,transform .3s,background .2s;pointer-events:none;border:none;cursor:pointer;font-family:'Noto Sans JP',sans-serif;white-space:nowrap}
+#sticky-cta.visible .sticky-btn{opacity:1;transform:translateY(0);pointer-events:auto}
+.sticky-btn:hover,.sticky-btn:focus-visible{background:var(--ink)}
+.sticky-btn:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+/* --- Back to Top --- */
+#back-top{position:fixed;bottom:28px;right:28px;z-index:51;width:46px;height:46px;background:var(--ink);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(12px);transition:opacity .3s,transform .3s,background .2s;pointer-events:none}
+#back-top.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+#back-top:hover{background:var(--red)}
+#back-top:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+/* --- Skeleton Loading --- */
+.sk-wrap{position:relative;background:#e8e8e8}
+.sk-wrap::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.65) 50%,transparent 100%);animation:sk-shimmer 1.5s ease-in-out infinite}
+@keyframes sk-shimmer{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
+.sk-wrap.loaded::before{animation:none;opacity:0}
+.sk-wrap img{transition:opacity .4s;position:relative;z-index:2}
+/* --- Service Card Tooltips --- */
+#svc-grid>div{position:relative;cursor:default}
+.tip{position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(8px);background:#fff;color:var(--ink);font-weight:500;font-size:12.5px;line-height:1.75;padding:12px 16px;width:188px;pointer-events:none;opacity:0;transition:opacity .18s,transform .18s;z-index:30;box-shadow:0 8px 24px rgba(0,0,0,.22)}
+.tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:7px solid transparent;border-top-color:#fff}
+#svc-grid>div:hover .tip{opacity:1;transform:translateX(-50%) translateY(0)}
+/* --- FAQ Accordion --- */
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-q{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 4px;font-weight:700;font-size:17px;color:var(--ink);cursor:pointer;background:none;border:none;width:100%;text-align:left;font-family:'Noto Sans JP',sans-serif;line-height:1.6}
+.faq-q:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.faq-icon{flex:none;width:24px;height:24px;border:1.5px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .2s,border-color .2s,transform .3s;color:var(--grey);font-size:16px;line-height:1}
+.faq-item.open .faq-icon{background:var(--red);border-color:var(--red);color:#fff;transform:rotate(45deg)}
+.faq-a{overflow:hidden;max-height:0;transition:max-height .38s ease}
+.faq-a-inner{padding:0 4px 22px;font-weight:500;font-size:15px;line-height:1.9;color:var(--grey)}
+.faq-item.open .faq-a{max-height:300px}
 </style>
 </head>
 <body>
+<div id="sm-progress" aria-hidden="true"></div>
 
 <!-- HEADER -->
 <header id="sm-head" style="position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:18px 56px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)">
@@ -259,8 +295,8 @@ body{font-family:'Noto Sans JP',sans-serif}
 
     <!-- 1 レポスル -->
     <div style="flex:1;display:flex;align-items:center;gap:22px;min-height:0">
-      <div style="flex:1;position:relative;align-self:stretch;min-height:0;overflow:hidden">
-        <img src="project/chatgpt-image-2026-6-21-08_35_42-mqmzzg2u.png" alt="レポスル" style="width:100%;height:100%;display:block;object-fit:cover">
+      <div class="sk-wrap" style="flex:1;position:relative;align-self:stretch;min-height:0;overflow:hidden">
+        <img src="project/chatgpt-image-2026-6-21-08_35_42-mqmzzg2u.png" alt="レポスル" style="width:100%;height:100%;display:block;object-fit:cover" onload="this.parentElement.classList.add('loaded')">
       </div>
       <div style="width:40%;min-width:170px;padding-right:6px">
         <div style="font-weight:700;font-size:12.5px;color:var(--red);letter-spacing:.06em;border-left:3px solid var(--red);padding-left:8px;margin-bottom:9px">自社事業</div>
@@ -271,8 +307,8 @@ body{font-family:'Noto Sans JP',sans-serif}
 
     <!-- 2 Web制作 -->
     <div style="flex:1;display:flex;align-items:center;gap:22px;min-height:0;flex-direction:row-reverse">
-      <div style="flex:1;position:relative;align-self:stretch;min-height:0;overflow:hidden">
-        <img src="project/assets/hero-web-seisaku.png" alt="Web制作" style="display:block;width:100%;height:100%;object-fit:cover">
+      <div class="sk-wrap" style="flex:1;position:relative;align-self:stretch;min-height:0;overflow:hidden">
+        <img src="project/assets/hero-web-seisaku.png" alt="Web制作" style="display:block;width:100%;height:100%;object-fit:cover" onload="this.parentElement.classList.add('loaded')">
       </div>
       <div style="width:40%;min-width:170px;padding-left:6px;text-align:right">
         <div style="font-weight:700;font-size:12.5px;color:var(--red);letter-spacing:.06em;border-right:3px solid var(--red);padding-right:8px;margin-bottom:9px">集客支援</div>
@@ -283,8 +319,8 @@ body{font-family:'Noto Sans JP',sans-serif}
 
     <!-- 3 システム開発 -->
     <div style="flex:1;display:flex;align-items:center;gap:22px;min-height:0">
-      <div style="flex:1;position:relative;align-self:stretch;min-height:0;overflow:hidden">
-        <img src="project/assets/hero-system-dev.png" alt="システム開発" style="display:block;width:100%;height:100%;object-fit:cover">
+      <div class="sk-wrap" style="flex:1;position:relative;align-self:stretch;min-height:0;overflow:hidden">
+        <img src="project/assets/hero-system-dev.png" alt="システム開発" style="display:block;width:100%;height:100%;object-fit:cover" onload="this.parentElement.classList.add('loaded')">
       </div>
       <div style="width:40%;min-width:170px;padding-right:6px">
         <div style="font-weight:700;font-size:12.5px;color:var(--red);letter-spacing:.06em;border-left:3px solid var(--red);padding-left:8px;margin-bottom:9px">開発支援</div>
@@ -323,7 +359,7 @@ body{font-family:'Noto Sans JP',sans-serif}
     </div>
     <div style="margin-top:14px;font-weight:500;font-size:11.5px;color:var(--grey)">導入企業数</div>
     <div style="margin-top:2px;display:flex;align-items:baseline;gap:2px;white-space:nowrap">
-      <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:30px;color:var(--red);letter-spacing:-.01em">500</span>
+      <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:30px;color:var(--red);letter-spacing:-.01em" data-count="500">500</span>
       <span style="font-weight:700;font-size:14px;color:var(--ink)">社突破</span>
     </div>
   </div>
@@ -340,7 +376,7 @@ body{font-family:'Noto Sans JP',sans-serif}
     </div>
     <div style="margin-top:14px;font-weight:500;font-size:11.5px;color:var(--grey)">制作実績</div>
     <div style="margin-top:2px;display:flex;align-items:baseline;gap:2px;white-space:nowrap">
-      <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:30px;color:var(--red);letter-spacing:-.01em">300</span>
+      <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:30px;color:var(--red);letter-spacing:-.01em" data-count="300">300</span>
       <span style="font-weight:700;font-size:14px;color:var(--ink)">サイト超</span>
     </div>
   </div>
@@ -357,7 +393,7 @@ body{font-family:'Noto Sans JP',sans-serif}
     </div>
     <div style="margin-top:14px;font-weight:500;font-size:11.5px;color:var(--grey)">開発実績</div>
     <div style="margin-top:2px;display:flex;align-items:baseline;gap:2px;white-space:nowrap">
-      <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:30px;color:var(--red);letter-spacing:-.01em">200</span>
+      <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:30px;color:var(--red);letter-spacing:-.01em" data-count="200">200</span>
       <span style="font-weight:700;font-size:14px;color:var(--ink)">プロジェクト超</span>
     </div>
   </div>
@@ -374,7 +410,7 @@ body{font-family:'Noto Sans JP',sans-serif}
     </div>
     <div style="margin-top:14px;font-weight:500;font-size:11.5px;color:var(--grey)">累計参加者数</div>
     <div style="margin-top:2px;display:flex;align-items:baseline;gap:2px;white-space:nowrap">
-      <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:30px;color:var(--red);letter-spacing:-.01em">20,000</span>
+      <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:30px;color:var(--red);letter-spacing:-.01em" data-count="20000" data-fmt="comma">20,000</span>
       <span style="font-weight:700;font-size:14px;color:var(--ink)">名超</span>
     </div>
   </div>
@@ -391,7 +427,7 @@ body{font-family:'Noto Sans JP',sans-serif}
     </div>
     <div style="margin-top:14px;font-weight:500;font-size:11.5px;color:var(--grey)">継続支援中の企業</div>
     <div style="margin-top:2px;display:flex;align-items:baseline;gap:2px;white-space:nowrap">
-      <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:30px;color:var(--red);letter-spacing:-.01em">100</span>
+      <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:30px;color:var(--red);letter-spacing:-.01em" data-count="100">100</span>
       <span style="font-weight:700;font-size:14px;color:var(--ink)">社以上</span>
     </div>
   </div>
@@ -527,8 +563,8 @@ body{font-family:'Noto Sans JP',sans-serif}
     <div id="biz1" data-anim-group style="display:grid;grid-template-columns:1.1fr .9fr;gap:54px;align-items:center;margin-bottom:90px">
       <div style="position:relative">
         <div style="position:absolute;top:-22px;left:-10px;font-family:'Archivo',sans-serif;font-weight:900;font-size:120px;color:#f5f5f5;line-height:1;z-index:0">01</div>
-        <div style="position:relative;z-index:1;width:100%;height:440px;background:#eef1f0;box-shadow:0 30px 60px -30px rgba(0,0,0,.28);overflow:hidden">
-          <img src="project/assets/biz-reposul.png" alt="レポスル" onerror="this.src='project/chatgpt-image-2026-6-21-08_35_42-mqmzzg2u.png'" style="width:100%;height:100%;object-fit:cover;display:block">
+        <div class="sk-wrap" style="position:relative;z-index:1;width:100%;height:440px;background:#eef1f0;box-shadow:0 30px 60px -30px rgba(0,0,0,.28);overflow:hidden">
+          <img src="project/assets/biz-reposul.png" alt="レポスル" onerror="this.src='project/chatgpt-image-2026-6-21-08_35_42-mqmzzg2u.png'" style="width:100%;height:100%;object-fit:cover;display:block" onload="this.parentElement.classList.add('loaded')">
         </div>
       </div>
       <div>
@@ -552,8 +588,8 @@ body{font-family:'Noto Sans JP',sans-serif}
     <div id="biz2" data-anim-group style="display:grid;grid-template-columns:1.1fr .9fr;gap:54px;align-items:center">
       <div style="position:relative">
         <div style="position:absolute;top:-22px;left:-10px;font-family:'Archivo',sans-serif;font-weight:900;font-size:120px;color:#f5f5f5;line-height:1;z-index:0">02</div>
-        <div style="position:relative;z-index:1;width:100%;height:440px;background:#efeae6;box-shadow:0 30px 60px -30px rgba(0,0,0,.28);overflow:hidden">
-          <img src="project/assets/biz-kazusa.png" alt="かずさ街コン" onerror="this.style.display='none'" style="width:100%;height:100%;object-fit:cover;display:block">
+        <div class="sk-wrap" style="position:relative;z-index:1;width:100%;height:440px;background:#efeae6;box-shadow:0 30px 60px -30px rgba(0,0,0,.28);overflow:hidden">
+          <img src="project/assets/biz-kazusa.png" alt="かずさ街コン" onerror="this.style.display='none'" style="width:100%;height:100%;object-fit:cover;display:block" onload="this.parentElement.classList.add('loaded')">
         </div>
       </div>
       <div>
@@ -591,6 +627,7 @@ body{font-family:'Noto Sans JP',sans-serif}
           <div style="width:46px;height:46px;flex:none;border-radius:10px;background:rgba(227,0,15,.14);display:flex;align-items:center;justify-content:center;color:var(--red)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><line x1="10" y1="18.5" x2="14" y2="18.5"/></svg></div>
           <div style="font-family:'Archivo',sans-serif;font-weight:900;font-size:28px;color:var(--red);line-height:1">①</div>
         </div>
+        <span class="tip">スマホアプリ・業務システム・会員サイトなど、オーダーメイドで開発します</span>
         <h3 style="margin:16px 0 18px;font-weight:900;font-size:19px;color:#fff">アプリ開発</h3>
         <div style="display:flex;flex-direction:column;gap:9px;margin-top:auto">
           <div style="display:flex;align-items:center;gap:9px;font-weight:500;font-size:13.5px;color:#cfcfcf"><span style="color:var(--red);font-family:'Archivo';font-weight:700">/</span>業務システム</div>
@@ -603,6 +640,7 @@ body{font-family:'Noto Sans JP',sans-serif}
           <div style="width:46px;height:46px;flex:none;border-radius:10px;background:rgba(227,0,15,.14);display:flex;align-items:center;justify-content:center;color:var(--red)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="1.5"/><line x1="3" y1="8.5" x2="21" y2="8.5"/><circle cx="6" cy="6.2" r="0.5"/><circle cx="8" cy="6.2" r="0.5"/></svg></div>
           <div style="font-family:'Archivo',sans-serif;font-weight:900;font-size:28px;color:var(--red);line-height:1">②</div>
         </div>
+        <span class="tip">企業サイト・採用サイト・LPなど、成果につながるWebサイトを制作します</span>
         <h3 style="margin:16px 0 18px;font-weight:900;font-size:19px;color:#fff">Web制作</h3>
         <div style="display:flex;flex-direction:column;gap:9px;margin-top:auto">
           <div style="display:flex;align-items:center;gap:9px;font-weight:500;font-size:13.5px;color:#cfcfcf"><span style="color:var(--red);font-family:'Archivo';font-weight:700">/</span>企業サイト</div>
@@ -615,6 +653,7 @@ body{font-family:'Noto Sans JP',sans-serif}
           <div style="width:46px;height:46px;flex:none;border-radius:10px;background:rgba(227,0,15,.14);display:flex;align-items:center;justify-content:center;color:var(--red)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><polyline points="14 3 14 7 18 7"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="15.5" x2="15" y2="15.5"/></svg></div>
           <div style="font-family:'Archivo',sans-serif;font-weight:900;font-size:28px;color:var(--red);line-height:1">③</div>
         </div>
+        <span class="tip">営業資料・会社案内・マニュアルなど、伝わるコンテンツを制作します</span>
         <h3 style="margin:16px 0 18px;font-weight:900;font-size:19px;color:#fff">コンテンツ制作</h3>
         <div style="display:flex;flex-direction:column;gap:9px;margin-top:auto">
           <div style="display:flex;align-items:center;gap:9px;font-weight:500;font-size:13.5px;color:#cfcfcf"><span style="color:var(--red);font-family:'Archivo';font-weight:700">/</span>営業資料</div>
@@ -627,6 +666,7 @@ body{font-family:'Noto Sans JP',sans-serif}
           <div style="width:46px;height:46px;flex:none;border-radius:10px;background:rgba(227,0,15,.14);display:flex;align-items:center;justify-content:center;color:var(--red)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><polyline points="9 11.5 11.2 13.7 15.5 9.5"/></svg></div>
           <div style="font-family:'Archivo',sans-serif;font-weight:900;font-size:28px;color:var(--red);line-height:1">④</div>
         </div>
+        <span class="tip">IT戦略立案・ツール選定・DX推進など、経営に寄り添って伴走します</span>
         <h3 style="margin:16px 0 18px;font-weight:900;font-size:19px;color:#fff">IT顧問</h3>
         <div style="display:flex;flex-direction:column;gap:9px;margin-top:auto">
           <div style="display:flex;align-items:center;gap:9px;font-weight:500;font-size:13.5px;color:#cfcfcf"><span style="color:var(--red);font-family:'Archivo';font-weight:700">/</span>DX支援</div>
@@ -639,6 +679,7 @@ body{font-family:'Noto Sans JP',sans-serif}
           <div style="width:46px;height:46px;flex:none;border-radius:10px;background:rgba(227,0,15,.14);display:flex;align-items:center;justify-content:center;color:var(--red)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="11" rx="1.5"/><line x1="8" y1="20" x2="16" y2="20"/><line x1="12" y1="16" x2="12" y2="20"/></svg></div>
           <div style="font-family:'Archivo',sans-serif;font-weight:900;font-size:28px;color:var(--red);line-height:1">⑤</div>
         </div>
+        <span class="tip">PC・Wi-Fi・周辺機器など、業務に必要な機器の選定・導入をサポートします</span>
         <h3 style="margin:16px 0 18px;font-weight:900;font-size:19px;color:#fff">OA・ガジェット</h3>
         <div style="display:flex;flex-direction:column;gap:9px;margin-top:auto">
           <div style="display:flex;align-items:center;gap:9px;font-weight:500;font-size:13.5px;color:#cfcfcf"><span style="color:var(--red);font-family:'Archivo';font-weight:700">/</span>PC</div>
@@ -841,6 +882,38 @@ body{font-family:'Noto Sans JP',sans-serif}
   </div>
 </section>
 
+<!-- SEC FAQ -->
+<section id="faq" style="position:relative;background:#fafafa;border-top:1px solid #ededed;padding:120px 56px">
+  <div style="max-width:800px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:64px">
+      <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:13px;letter-spacing:.24em;color:var(--red)">FAQ</div>
+      <h2 data-anim="rise" style="margin:14px 0 0;font-weight:900;font-size:clamp(30px,3.8vw,48px);color:var(--ink);letter-spacing:.02em">よくあるご質問</h2>
+    </div>
+    <div id="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">相談・見積もりは無料ですか？<span class="faq-icon" aria-hidden="true">+</span></button>
+        <div class="faq-a" role="region"><div class="faq-a-inner">はい、初回のご相談・お見積もりは無料です。お気軽にお問い合わせフォームからご連絡ください。</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">制作の期間はどのくらいかかりますか？<span class="faq-icon" aria-hidden="true">+</span></button>
+        <div class="faq-a" role="region"><div class="faq-a-inner">プロジェクトの規模によって異なりますが、LP・コーポレートサイトは2〜4週間、大型サイトやシステム開発は1〜3ヶ月が目安です。詳しくはご相談ください。</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">制作後の保守・運用はお願いできますか？<span class="faq-icon" aria-hidden="true">+</span></button>
+        <div class="faq-a" role="region"><div class="faq-a-inner">はい、月額の保守・運用プランをご用意しています。コンテンツ更新・セキュリティ対応・改善提案など、リリース後も伴走してサポートします。</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">千葉県外でも対応可能ですか？<span class="faq-icon" aria-hidden="true">+</span></button>
+        <div class="faq-a" role="region"><div class="faq-a-inner">はい、オンラインでの打ち合わせを基本とし、全国対応しています。もちろん対面でのご相談も歓迎です。</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">予算が限られていても依頼できますか？<span class="faq-icon" aria-hidden="true">+</span></button>
+        <div class="faq-a" role="region"><div class="faq-a-inner">ご予算やゴールに合わせて最適なプランをご提案します。まずはご要望をお聞かせください。</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- SEC 10: CONTACT CTA -->
 <section id="contact" style="position:relative;background:var(--red);padding:120px 56px;overflow:hidden">
   <div aria-hidden="true" style="position:absolute;left:-3%;bottom:-30%;width:420px;opacity:.16;z-index:0">
@@ -893,5 +966,84 @@ body{font-family:'Noto Sans JP',sans-serif}
   <div style="max-width:1240px;margin:48px auto 0;padding-top:24px;border-top:1px solid #26261f;font-family:'Archivo',sans-serif;font-size:12px;color:#6a6a6a">© 2026 SIXMATE Inc. All rights reserved.</div>
 </footer>
 
+<!-- Sticky CTA -->
+<div id="sticky-cta" aria-label="お問い合わせへ">
+  <a href="contact.html" class="sticky-btn">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    無料で相談する
+  </a>
+</div>
+
+<!-- Back to Top -->
+<button id="back-top" aria-label="ページトップへ戻る" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<script>
+(function(){
+  // --- Scroll Progress Bar ---
+  var prog = document.getElementById('sm-progress');
+  // --- Sticky CTA + Back to Top ---
+  var cta = document.getElementById('sticky-cta');
+  var btop = document.getElementById('back-top');
+  var hero = document.getElementById('hero');
+  var contact = document.getElementById('contact');
+  function onScroll(){
+    var scrolled = window.scrollY;
+    var total = document.documentElement.scrollHeight - window.innerHeight;
+    if(prog) prog.style.width = (total > 0 ? scrolled/total*100 : 0) + '%';
+    var heroBottom = hero ? hero.getBoundingClientRect().bottom + scrolled : 400;
+    var contactTop = contact ? contact.getBoundingClientRect().top + scrolled : Infinity;
+    var show = scrolled > heroBottom && scrolled < contactTop - window.innerHeight;
+    if(cta){ cta.classList.toggle('visible', show); }
+    if(btop){ btop.classList.toggle('visible', scrolled > 400); }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // --- Count-Up Animation ---
+  function animCount(el){
+    if(el.dataset.counted) return;
+    el.dataset.counted = '1';
+    var target = parseInt(el.dataset.count, 10);
+    var fmt = el.dataset.fmt === 'comma';
+    var dur = 1600;
+    var start = performance.now();
+    function step(now){
+      var t = Math.min((now - start) / dur, 1);
+      var ease = 1 - Math.pow(1 - t, 3);
+      var val = Math.round(ease * target);
+      el.textContent = fmt ? val.toLocaleString('ja-JP') : val;
+      if(t < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var countEls = document.querySelectorAll('[data-count]');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting) animCount(e.target); });
+    },{threshold:.3});
+    countEls.forEach(function(el){ io.observe(el); });
+  } else {
+    countEls.forEach(animCount);
+  }
+
+  // --- FAQ Accordion ---
+  document.querySelectorAll('.faq-q').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.faq-item');
+      var open = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(o){
+        o.classList.remove('open');
+        o.querySelector('.faq-q').setAttribute('aria-expanded','false');
+      });
+      if(!open){
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+})();
+</script>
 </body>
 </html>
