@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PHPセキュリティ脆弱性に関するご案内 | SIXMATE</title>
+<meta name="description" content="PHPの重大な脆弱性に関する注意喚起を受け、弊社制作・管理サイトへの影響について報告します。">
+<link rel="canonical" href="https://sixmate.co.jp/news/php-security-2026.html">
+<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="apple-touch-icon" href="../favicon.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://sixmate.co.jp/news/php-security-2026.html">
+<meta property="og:title" content="PHPセキュリティ脆弱性に関するご案内 | SIXMATE">
+<meta property="og:description" content="弊社制作・管理サイトへの影響はございません。">
+<meta property="og:site_name" content="SIXMATE">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://sixmate.co.jp/project/assets/sixmate-mark.png">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#fff}
+:root{--red:#e3000f;--ink:#161310;--paper:#fff;--grey:#6a6a6a;--line:#e3e3e3}
+body{font-family:'Noto Sans JP',sans-serif}
+[data-burger]{display:none}
+@media(max-width:560px){
+  #sm-head{padding:14px 22px!important}
+  [data-burger]{display:flex!important}
+  #sm-nav{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch!important;gap:0!important;background:#fff;border-bottom:1px solid var(--line);padding:6px 22px 16px!important;display:none!important;box-shadow:0 16px 30px -16px rgba(0,0,0,.25)}
+  #sm-head.open #sm-nav{display:flex!important}
+  #sm-nav a{padding:14px 2px!important;border-bottom:1px solid #f0f0f0;font-size:15px!important}
+  #sm-nav a:last-child{border-bottom:none;text-align:center;margin-top:10px}
+  .article-body{padding:60px 24px!important}
+}
+</style>
+</head>
+<body style="position:relative;width:100%;min-height:100vh;background:#fff">
+
+<!-- HEADER -->
+<header id="sm-head" style="position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:18px 56px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)">
+  <a href="../index.html" style="display:block"><img src="../project/assets/sixmate-logo-h.png" alt="SIXMATE" style="height:30px;width:auto;display:block"></a>
+  <nav id="sm-nav" style="display:flex;align-items:center;gap:32px">
+    <a href="../index.html#business" style="text-decoration:none;font-weight:700;font-size:14px;color:var(--ink)">自社サービス</a>
+    <a href="../index.html#services" style="text-decoration:none;font-weight:700;font-size:14px;color:var(--ink)">サービス</a>
+    <a href="../works.html" style="text-decoration:none;font-weight:700;font-size:14px;color:var(--ink)">制作実績</a>
+    <a href="../news.html" style="text-decoration:none;font-weight:700;font-size:14px;color:var(--red)">お知らせ</a>
+    <a href="../contact.html" style="text-decoration:none;font-weight:700;font-size:14px;color:#fff;background:var(--red);padding:10px 22px">お問い合わせ</a>
+  </nav>
+  <button data-burger style="background:none;border:none;cursor:pointer;padding:4px;flex-direction:column;gap:5px" onclick="this.closest('header').classList.toggle('open')" aria-label="メニュー">
+    <span style="display:block;width:24px;height:2px;background:var(--ink)"></span>
+    <span style="display:block;width:24px;height:2px;background:var(--ink)"></span>
+    <span style="display:block;width:24px;height:2px;background:var(--ink)"></span>
+  </button>
+</header>
+
+<!-- ARTICLE -->
+<main>
+  <!-- Hero -->
+  <div style="background:#fafafa;border-bottom:1px solid var(--line);padding:64px 56px 52px">
+    <div style="max-width:760px;margin:0 auto">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:22px">
+        <a href="../news.html" style="text-decoration:none;font-weight:700;font-size:13px;color:var(--grey);display:flex;align-items:center;gap:6px">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          お知らせ一覧
+        </a>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px">
+        <span style="font-family:'Archivo',sans-serif;font-weight:700;font-size:13px;color:#9a9a9a">2026.10.22</span>
+        <span style="font-weight:700;font-size:11.5px;color:var(--red);border:1px solid #f0c9cc;padding:4px 12px">お知らせ</span>
+      </div>
+      <h1 style="margin:0;font-weight:900;font-size:clamp(22px,3vw,34px);color:var(--ink);line-height:1.4;letter-spacing:.01em">PHPセキュリティ脆弱性に関するご案内</h1>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="article-body" style="padding:80px 56px 120px">
+    <div style="max-width:760px;margin:0 auto">
+
+      <p style="margin:0 0 32px;font-weight:500;font-size:15px;line-height:2;color:var(--grey)">
+        2026年10月21日、高市早苗総理よりPHPの重大な脆弱性（2件）についての注意喚起が発信されました。<br>
+        弊社に制作・管理をご依頼いただいているお客様へ、現在の状況をお知らせいたします。
+      </p>
+
+      <div style="background:#fafafa;border-left:4px solid var(--red);padding:28px 32px;margin-bottom:40px">
+        <p style="margin:0;font-weight:700;font-size:16px;color:var(--ink);line-height:1.9">
+          弊社にて制作・管理しているウェブサイトについては、PHPを利用しておりません。<br>
+          また、AIも活用し、各サイトを巡回チェックさせましたが異常はありませんでした。<br>
+          <span style="color:var(--red)">現時点で、弊社制作サイトへの影響はございません。</span>
+        </p>
+      </div>
+
+      <p style="margin:0 0 48px;font-weight:500;font-size:15px;line-height:2;color:var(--grey)">
+        引き続き安全なサイト運営に努めてまいります。ご不明な点やご心配な点がございましたら、お気軽にお問い合わせください。
+      </p>
+
+      <!-- 参考リンク -->
+      <div style="border:1px solid var(--line);padding:24px 28px;margin-bottom:64px">
+        <div style="font-weight:700;font-size:12px;color:var(--grey);letter-spacing:.1em;margin-bottom:14px">参考リンク</div>
+        <a href="https://x.com/takaichi_sanae/status/2112890642590564386?s=46&t=w7_890NnVlFRQvmlZeLu8A" target="_blank" rel="noopener noreferrer" style="text-decoration:none;display:flex;align-items:center;gap:12px;color:var(--ink)" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--ink)'">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          <span style="font-weight:700;font-size:14px">高市早苗総理のポスト（X / 旧Twitter）</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:auto;flex:none"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </div>
+
+      <!-- CTA -->
+      <div style="text-align:center;border-top:1px solid var(--line);padding-top:64px">
+        <p style="margin:0 0 28px;font-weight:700;font-size:16px;color:var(--ink)">ご不明な点はお気軽にご相談ください</p>
+        <a href="../contact.html" style="text-decoration:none;display:inline-flex;align-items:center;gap:32px;background:var(--red);color:#fff;font-weight:900;font-size:15px;padding:18px 36px" onmouseover="this.style.background='var(--ink)'" onmouseout="this.style.background='var(--red)'">
+          お問い合わせはこちら
+          <span style="font-family:'Archivo'">→</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer style="background:#0e0e0c;padding:40px 56px">
+  <div style="max-width:1240px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px">
+    <img src="../project/assets/sixmate-logo-h.png" alt="SIXMATE" style="height:28px;width:auto;display:block">
+    <div style="font-family:'Archivo',sans-serif;font-size:12px;color:#6a6a6a">© 2026 SIXMATE Inc. All rights reserved.</div>
+  </div>
+</footer>
+
+</body>
+</html>
